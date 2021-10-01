@@ -1,0 +1,26 @@
+<app-student-dashboard></app-student-dashboard>
+<div id="view">
+    <div *ngIf="packages!=undefined">
+        <div class="row">
+            <div class="col-sm-4" *ngFor="let package of packages">
+                <div class="card" style="width: 24rem; margin-top: 20px;">
+                    <img class="card-img-top" [src]="package.imageUrl" alt="Card image cap">
+                    <div class="card-body">
+                        <h1 class="card-title"><b>{{package.name}}</b></h1>
+                        <div id="days">
+                            Planned Days: {{package.plannedDays}} 
+                            <span id="price">Price: {{package.price}}</span>
+                        </div>
+                        <div id="type">Type: {{package.type}}</div>
+                        <button (click)="view(package.id)" class="btn btn-info">View More</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="packages==undefined">
+        <h2 id="tableContent">
+            No Places Avaialable for this City at this moment.
+        </h2>
+    </div>
+</div>

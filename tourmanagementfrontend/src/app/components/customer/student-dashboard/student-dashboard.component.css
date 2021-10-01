@@ -1,0 +1,25 @@
+#app {
+    margin-left: 420px;
+    font-family: 'Lora', serif;
+    font-size: 30px;
+}
+
+#icon {
+    margin-left: 340px;
+}
+
+/* TO REMOVE BUTTON OUTLINE */
+button:focus {
+    outline: none;
+   
+}
+
+/* TO REMOVE UNDERLINE */
+a {
+    text-decoration: none;
+}
+
+/* TO CHANGE HOVER COLOR OF LINK */
+a:hover {
+    color: white;
+}

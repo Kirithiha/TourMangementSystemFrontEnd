@@ -1,0 +1,49 @@
+<app-student-dashboard></app-student-dashboard>
+<div id="view" *ngIf="package != undefined"> 
+    <div id="firstrow">
+        <div class="form-row">
+            <div class="form-group col-md-6">
+            <img [src]="package.imageUrl" id="image">
+            </div>
+            <div class="form-group col-md-6" >
+                <div id="name">
+                    <h1 id="packagename"><b>{{package.name}}</b></h1>
+                    <h4 id="days">{{nights}}Nights - {{days}}Day</h4>
+                    <hr>
+                    <h2 id="placetitle"><b>Places Covered</b></h2>
+                    <h4 *ngFor="let place of places" id="place">{{place.place.name}}</h4>
+                    <button class="btn btn-info btn-lg btn-block" (click)="booking()" id="booking">Book Now</button>
+                    <h5 id="span">***Look down for futher details about package and book for it</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card" id="overview">
+        <div class="card-body">
+          <h2 id="title"><b>Overview</b></h2>
+          <p id="content">{{package.overview}}</p>
+        </div>
+    </div>
+
+    <div class="card" id="overview">
+        <div class="card-body">
+            <h2 id="title"><b>Itinerary</b></h2>
+            <table class="table" *ngIf="itinerary!=undefined">
+                <tbody>
+                    <tr *ngFor="let itiner of itinerary">
+                        <td id="days">Days: {{itiner.dayNumber}}</td>
+                        <td>
+                            <div id="title">
+                                <b>{{itiner.title}}</b>
+                            </div>
+                            <div id="plan">
+                                {{itiner.dayPlan}}
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>

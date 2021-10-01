@@ -1,0 +1,47 @@
+<app-dashboard></app-dashboard>
+<div>
+    <div class="row">
+        <div class="col-2" id="search">
+            <!--<input class="form-control" id="myInput" type="text" placeholder="Search..">-->
+        </div>
+        <div class="col-8">
+            <h1 id="app">List of Packages</h1>
+            <table id="view" class="table" *ngIf= "packages!=undefined && length!=0">
+                <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Type</th>
+                    <th>Price</th>
+                    <th>PlannedDay</th>
+                    <th>Image</th>
+                    <th>City Code</th>
+                    <th>Action</th>
+                </tr>
+                </thead>
+                <tbody id="myTable">
+                    <tr *ngFor="let package of packages">
+                        <td>{{package.name}}</td>
+                        <td>{{package.type}}</td>
+                        <td>{{package.price}}</td>
+                        <td>{{package.plannedDays}}</td>
+                        <td><img [src]="package.imageUrl" id="image"></td>
+                        <td>{{package.city.rtoCode}}-{{package.city.name}}</td>
+                        <td>
+                            <button (click)="update(package)" class="btn btn-info">Update</button>
+                            <br/> <br/>
+                            <button (click)="delete(package.id)" class="btn btn-danger" style="width: 80px;margin-left: 4px;">Delete</button>
+                            <br/><br/>
+                            <button (click)="view(package.id)" class="btn btn-info" style="width: 110px;margin-left: 4px;">View Details</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <h2 id="tableContent" *ngIf="packages==undefined || length == 0">
+                No Places Avaialable at this moment
+            </h2>
+        </div>
+        <div class="col-2" id="add">
+            <button type="button" (click)="addPackage()" id="add" class="btn btn-info btn-lg">Add Package</button>
+        </div>
+    </div>
+</div>

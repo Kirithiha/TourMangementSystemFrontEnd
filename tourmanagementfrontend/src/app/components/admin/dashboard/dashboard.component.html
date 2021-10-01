@@ -1,0 +1,23 @@
+<div>
+    <mat-toolbar color="secondary">
+        <h1 id="app"> Tour Management System </h1>
+        <a routerLink="/" mat-menu-item id="logout">
+          <span>Logout</span>
+      </a>
+    </mat-toolbar>
+    <mat-toolbar class="menutool">
+        <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #f8f4f4e5">
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+              <div class="navbar-nav">
+                <a class="nav-item nav-link active" routerLink="/admin">Home<span class="sr-only">(current)</span></a>
+                <a class="nav-item nav-link" style="margin-left: 10px;" routerLink="/managestate">Manage State</a>
+                <a class="nav-item nav-link" style="margin-left: 10px;" routerLink="/managecity">Manage City</a>
+                <a class="nav-item nav-link" style="margin-left: 10px;" routerLink="/managetype">Manage Type</a>
+                <a class="nav-item nav-link" style="margin-left: 10px;" routerLink="/manageplace">Manage Place</a>
+                <a class="nav-item nav-link" style="margin-left: 10px;" routerLink="/managepackage">Manage Package</a>
+                <a class="nav-item nav-link" style="margin-left: 10px;"routerLink="/viewbooking">Manage Bookings</a>
+              </div>
+            </div>
+        </nav>
+    </mat-toolbar>
+</div>

@@ -1,0 +1,40 @@
+<app-dashboard></app-dashboard>
+<div>
+    <div class="form-row">
+        <h1 id="app">List of Places</h1>
+        <h4 id="filter">Filters</h4>
+        <div id="selectFilter">
+            <select class="form-control form-control-lg" name="view" style="height: 40px;" requried ngModel (ngModelChange)="getView($event)">
+                <option value=1>View By City Code</option>
+                <option value=2>View All Placed</option>
+            </select>
+        </div>
+    </div>
+    <div id="viewPlace">
+        <table class="table" *ngIf= "places!=undefined">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Type</th>
+                <th>Description</th>
+                <th>Image</th>
+                <th>City Code</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let place of places">
+                <td>{{place.id}}</td>
+                <td>{{place.name}}</td>
+                <td>{{place.type}}</td>
+                <td>{{place.description}}</td>
+                <td><img ([ngModel])="place.imageUrl" [src]="place.imageUrl" id="image"></td>
+                <td>{{place.city.rtoCode}}-{{place.city.name}}</td>
+            </tr>
+            </tbody>
+        </table>
+        <h2 id="tableContent" *ngIf="places==undefined">
+            No Places Avaialable at this moment
+        </h2>
+    </div>
+</div>

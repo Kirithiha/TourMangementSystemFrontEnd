@@ -1,0 +1,22 @@
+<app-student-dashboard></app-student-dashboard>
+<div id="view">
+    <div *ngIf="places!=undefined">
+        <div class="row">
+            <div class="col-sm-4" *ngFor="let place of places">
+                <div class="card" style="width: 24rem; min-height: 500px;margin-top: 20px;">
+                    <img class="card-img-top" [src]="place.imageUrl" alt="Card image cap">
+                    <div class="card-body">
+                        <h1 class="card-title"><b>{{place.name}}</b></h1>
+                        <p class="card-text">{{place.description}}</p>
+                        <h5>Type: {{place.type}}</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="places==undefined">
+        <h2 id="tableContent">
+            No Places Avaialable for this City at this moment.
+        </h2>
+    </div>
+</div>

@@ -1,0 +1,18 @@
+#app {
+    margin-top: 10px;
+    margin-left: 480px;
+    font-family: 'Lora', serif;
+    font-size: 40px;
+}
+
+#viewState {
+    margin-top: 40px;
+    margin-left: 320px;
+    margin-right: 340px;
+    font-family: 'Lora', serif;
+    font-size: medium;
+}
+
+#tableContent {
+    text-align: center;
+}

@@ -1,0 +1,22 @@
+<div>
+    <mat-toolbar color="secondary">
+        <h1 id="app" (click)="home()"> Tour Management System </h1>
+        <mat-list-item id="icon">
+            <button mat-menu-item [matMenuTriggerFor]="profile" class="menubutton" style="font-family: 'Lora', serif;"><mat-icon> person_pin</mat-icon>Profile</button>
+        </mat-list-item>
+        <mat-menu #profile="matMenu">
+            <a routerLink="/viewbookingcustomer" mat-menu-item>
+                <mat-icon>view_list</mat-icon>
+                <span>View All Booking</span>
+            </a>
+            <a routerLink="/changepassword" mat-menu-item>
+                <mat-icon>archive</mat-icon>
+                <span>Change Password</span>
+            </a>
+            <a routerLink="/" mat-menu-item (click)="logout()">
+                <mat-icon>assignment_return</mat-icon>
+                <span>Logout</span>
+            </a>
+        </mat-menu>
+    </mat-toolbar>
+</div>

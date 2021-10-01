@@ -1,0 +1,30 @@
+<app-student-dashboard></app-student-dashboard>
+<div class="row">
+    <div class="col-2"></div>
+    <div class="col-8">
+        <h1 id="app">Book Your Package</h1>
+        <form id="addCity" #userForm="ngForm" (ngSubmit)='book(userForm.value)' novalidate>
+            <div class="form-row">
+                
+                <div class="form-group col-md-8">
+                    <label for="count">Enter the Number of travellers</label>
+                    <input type="number" class="form-control" name="travellerCount" placeholder="Enter the Number of travellers" ngModel required #count="ngModel">
+                </div>
+            </div>
+            <div *ngIf="count.touched" id="errorText">
+                <p *ngIf="count.errors?.required">Traveller Count is Required!!!</p>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-8">
+                    <label for="date">Enter the Date of Travel</label>
+                    <input type="date" class="form-control" name="dateOfTravel" placeholder="Enter the Date of Travel" ngModel required #date="ngModel">
+                </div>
+            </div>
+            <div *ngIf="date.touched" id="errorText">
+                <p *ngIf="date.errors?.required">Travelling Date is Required!!!</p>
+            </div>
+            <button type="submit" id="button" [disabled]="userForm.invalid" class="btn btn-primary" >Add Booking</button>
+        </form>
+    </div>
+    <div class="col-2"></div>
+</div>

@@ -1,0 +1,43 @@
+<app-dashboard></app-dashboard>
+<div>
+    <div class="row">
+        <div class="col-2" id="search">
+           <!--<input class="form-control" id="myInput" type="text" placeholder="Search..">-->
+        </div>
+        <div class="col-8" id="tableview">
+            <h1 id="app">List of Places</h1>
+            <table id="view" class="table" *ngIf= "places!=undefined">
+                <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Type</th>
+                    <th>Description</th>
+                    <th>Image</th>
+                    <th>City Code</th>
+                    <th>Action</th>
+                </tr>
+                </thead>
+                <tbody id="myTable">
+                    <tr *ngFor="let place of places">
+                        <td>{{place.name}}</td>
+                        <td>{{place.type}}</td>
+                        <td>{{place.description}}</td>
+                        <td><img ([ngModel])="place.imageUrl" [src]="place.imageUrl" id="image"></td>
+                        <td>{{place.city.rtoCode}}-{{place.city.name}}</td>
+                        <td>
+                            <button (click)="update(place)" class="btn btn-info">Update</button>
+                            <br/> <br/>
+                            <button (click)="delete(place.id)" class="btn btn-danger" style="width: 80px;margin-left: 4px;">Delete</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <h2 id="tableContent" *ngIf="places==undefined">
+                No Places Avaialable at this moment
+            </h2>
+        </div>
+        <div class="col-2" id="add">
+            <button type="button" (click)="addPlace()" id="add" class="btn btn-info btn-lg">Add Place</button>
+        </div>
+    </div>
+</div>

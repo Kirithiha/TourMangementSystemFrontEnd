@@ -1,0 +1,43 @@
+<app-dashboard></app-dashboard>
+<div class="addCity">
+
+    <h1 id="app">Add City</h1>
+
+    <form id="addCity" #userForm="ngForm" (ngSubmit)='saveCity(userForm.value)' novalidate>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="stateCode">Choose the State Code</label>
+                <select class="form-control form-control-lg"  name="state" style="height: 40px;" ngModel required #state="ngModel">
+                    <option *ngFor = "let state of states" [value]=state.id>{{ state.name }}-{{ state.code }}</option>
+                </select>
+            </div>
+        </div>
+        <div *ngIf="state.touched" id="errorText">
+            <p *ngIf="state.errors?.required">State Code is Required!!!</p>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="cityRtoCode">Enter the City Code</label>
+                <input type="text" class="form-control" name="rtoCode" placeholder="Enter the Rto Code" pattern="[A-Z]{2}[0-9]{2}[A-Z]{0,1}" ngModel required #rtoCode="ngModel">
+            </div>
+        </div>
+        <div *ngIf="rtoCode.touched" id="errorText">
+            <p *ngIf="rtoCode.errors?.required">City Code is Required!!!</p>
+            <p *ngIf="rtoCode.errors?.pattern">Exactly 5 or 4 characters are required!!!</p>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="cityName">Enter the City Name</label>
+                <input type="text" class="form-control" name="name" placeholder="Enter the City Name" pattern="[A-Z a-z]{2,}"ngModel required #name="ngModel">
+            </div>
+        </div>
+        <div *ngIf="name.touched" id="errorText">
+            <p *ngIf="name.errors?.required">City Name is Required!!!</p>
+            <p *ngIf="name.errors?.pattern">City Name must have only alphabets!!!</p>
+        </div>
+
+        <button type="submit" id="button" [disabled]="userForm.invalid" class="btn btn-primary">Add City</button>
+    </form>
+</div>

@@ -1,0 +1,36 @@
+<app-dashboard></app-dashboard>
+<div>
+    <div class="row">
+        <div class="col-2" id="search">
+            <input class="form-control" id="myInput" type="text" placeholder="Search..">
+        </div>
+        <div class="col-8">
+            <h1 id="app">List of States</h1>
+            <table id="view" class="table" *ngIf= "states!=undefined">
+                <thead>
+                <tr>
+                    <th>State Code</th>
+                    <th>State Name</th>
+                    <th>Action</th>
+                </tr>
+                </thead>
+                <tbody id="myTable">
+                <tr *ngFor="let state of states">
+                    <td>{{state.code}}</td>
+                    <td>{{state.name}}</td>
+                    <td>
+                        <button (click)="update(state)" class="btn btn-info">Update</button>
+                        <button (click)="delete(state.id)" class="btn btn-danger" style="margin-left: 10px;">Delete</button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            <h2 id="tableContent" *ngIf="states==undefined">
+                No States Avaialable at this moment
+            </h2>
+        </div>
+        <div class="col-2" id="add">
+            <button type="button" (click)="addState()" id="add" class="btn btn-info btn-lg">Add State</button>
+        </div>
+    </div>
+</div>

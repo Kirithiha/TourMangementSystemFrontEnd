@@ -1,0 +1,65 @@
+<app-dashboard></app-dashboard>
+<div class="addPlace">
+
+    <h1 id="app">Add Place</h1>
+
+    <form id="addPlace" #userForm="ngForm" (ngSubmit)='savePlace(userForm.value)' novalidate>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="cityCode">Choose the City Code</label>
+                <select class="form-control form-control-lg"  name="city" style="height: 40px;" ngModel required #city="ngModel">
+                    <option *ngFor = "let city of cities" [value]=city.id>{{ city.rtoCode }}-{{ city.name }}</option>
+                </select>
+            </div>
+        </div>
+        <div *ngIf="city.touched" id="errorText">
+            <p *ngIf="city.errors?.required">City Code is Required!!!</p>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="placeName">Enter the Place Name</label>
+                <input type="text" class="form-control" name="name" placeholder="Enter the Place Name" pattern="[A-Z a-z]{2,}" ngModel required #name="ngModel">
+            </div>
+        </div>
+        <div *ngIf="name.touched" id="errorText">
+            <p *ngIf="name.errors?.required">Place Name is Required!!!</p>
+            <p *ngIf="name.errors?.pattern">Place Name must have only alphabets!!!</p>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="type">Choose the Place Type</label>
+                <select class="form-control form-control-lg"  name="type" style="height: 40px;" ngModel required #type="ngModel">
+                    <option *ngFor = "let type of types" [value]=type.typeName>{{ type.typeName }}</option>
+                </select>
+            </div>
+        </div>
+        <div *ngIf="type.touched" id="errorText">
+            <p *ngIf="type.errors?.required">Place Type is Required!!!</p>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="imageUrl">Enter the Place Image Url</label>
+                <input type="text" class="form-control" name="imageUrl" placeholder="Enter the Image Url" ngModel required #imageUrl="ngModel">
+            </div>
+        </div>
+        <div *ngIf="imageUrl.touched" id="errorText">
+            <p *ngIf="imageUrl.errors?.required">Place Image Url is Required!!!</p>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="description">Enter the Place Description</label>
+                <input type="text" class="form-control" name="description" placeholder="Enter the Place Description" pattern="[A-Z a-z . 0-9]{2,}" ngModel required #description="ngModel">
+            </div>
+        </div>
+        <div *ngIf="description.touched" id="errorText">
+            <p *ngIf="description.errors?.required">Place Description is Required!!!</p>
+            <p *ngIf="description.errors?.pattern">Place Description must not have any symbols!!!</p>
+        </div>
+
+        <button type="submit" id="button" [disabled]="userForm.invalid" class="btn btn-primary">Add Place</button>
+    </form>
+</div>
