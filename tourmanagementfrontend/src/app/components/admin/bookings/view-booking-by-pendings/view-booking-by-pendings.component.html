@@ -1,0 +1,42 @@
+<app-dashboard></app-dashboard>
+<div>
+    <div class="form-row">
+        <h1 id="app">List of Bookings</h1>
+        <h4 id="filter">Filters</h4>
+        <div id="selectFilter">
+            <select class="form-control form-control-lg" name="view" style="height: 40px;" requried ngModel (ngModelChange)="getView($event)">
+                <option value=1>View By Customer</option>
+                <option value=2>View By Package</option>
+                <option value=3>View By Pending</option>
+                <option value=4>View All Bookings</option>
+            </select>
+        </div>
+    </div>
+    <div id="viewBooking">
+        <table class="table" *ngIf= "bookings!=undefined">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Customer</th>
+                <th>Date Of Travel</th>
+                <th>Traveller Count</th>
+                <th>Status</th>
+                <th>Tour Package</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let book of bookings">
+                <td>{{book.id}}</td>
+                <td>{{book.customer.name}}-{{book.customer.emailId}}</td>
+                <td>{{book.dateOfTravel}}</td>
+                <td>{{book.travellerCount}}</td>
+                <td>{{book.status}}</td>
+                <td>{{book.tourPackage.name}}-{{book.tourPackage.city.rtoCode}}</td>
+            </tr>
+            </tbody>
+        </table>
+        <h2 id="tableContent" *ngIf="bookings==undefined">
+            No Bookings Avaialable at this moment
+        </h2>
+    </div>
+</div>

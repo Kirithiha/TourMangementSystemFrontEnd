@@ -1,0 +1,43 @@
+<app-dashboard></app-dashboard>
+<div>
+    <div class="form-row">
+        <h1 id="app">List of Packages</h1>
+        <h4 id="filter">Filters</h4>
+        <div id="selectFilter">
+            <select class="form-control form-control-lg" name="view" style="height: 40px;" requried ngModel (ngModelChange)="getView($event)">
+                <option value=1>View By City Code</option>
+                <option value=2>View By Type</option>
+                <option value=3>View All Package</option>
+            </select>
+        </div>
+    </div>
+    <div id="viewPackage">
+        <table class="table" *ngIf= "packages!=undefined">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Type</th>
+                <th>Price</th>
+                <th>PlannedDay</th>
+                <th>City Code</th>
+                <th> </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let package of packages">
+                <td>{{package.id}}</td>
+                <td>{{package.name}}</td>
+                <td>{{package.type}}</td>
+                <td>{{package.price}}</td>
+                <td>{{package.plannedDays}}</td>
+                <td>{{package.city.rtoCode}}-{{package.city.name}}</td>
+                <td><button (click)="view(package.id)" class="btn btn-info">View</button></td>
+            </tr>
+            </tbody>
+        </table>
+        <h2 id="tableContent" *ngIf="packages==undefined">
+            No Places Avaialable at this moment
+        </h2>
+    </div>
+</div>

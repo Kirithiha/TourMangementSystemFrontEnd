@@ -1,0 +1,33 @@
+<app-student-dashboard></app-student-dashboard>
+<div>
+    <div class="form-row">
+        <h1 id="app">List of Bookings</h1>
+    </div>
+    <div id="viewBooking">
+        <table class="table" *ngIf= "bookings!=undefined && length!=0">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Customer</th>
+                <th>Date Of Travel</th>
+                <th>Traveller Count</th>
+                <th>Status</th>
+                <th>Tour Package</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let book of bookings">
+                <td>{{book.id}}</td>
+                <td>{{book.customer.name}}-{{book.customer.emailId}}</td>
+                <td>{{book.dateOfTravel}}</td>
+                <td>{{book.travellerCount}}</td>
+                <td>{{book.status}}</td>
+                <td>{{book.tourPackage.name}}-{{book.tourPackage.city.rtoCode}}</td>
+            </tr>
+            </tbody>
+        </table>
+        <h2 id="tableContent" *ngIf="bookings==undefined || length==0">
+            No Bookings Avaialable at this moment
+        </h2>
+    </div>
+</div>

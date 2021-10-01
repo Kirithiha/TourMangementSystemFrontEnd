@@ -1,0 +1,26 @@
+.addCity {
+    margin-left: 400px;
+    font-family: 'Lora', serif;
+    font-size: large;
+}
+
+#app{
+    margin-top: 10px;
+    margin-left: 160px;
+    font-family: 'Lora', serif;
+    font-size: 40px;
+}
+
+#addCity {
+    margin-top: 50px;
+}
+
+#button {
+    margin-left: 160px;
+}
+
+#errorText {
+    font-size: smaller;
+    color: red;
+    margin-left: 20px;
+}

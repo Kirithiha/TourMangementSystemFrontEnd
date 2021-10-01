@@ -1,0 +1,25 @@
+<app-dashboard></app-dashboard>
+<div>
+    
+    <h1 id="app">List of Types</h1>
+
+    <div id="viewType">
+        <table class="table" *ngIf= "types!=undefined">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Type Name</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let type of types">
+                <td>{{type.id}}</td>
+                <td>{{type.typeName}}</td>
+            </tr>
+            </tbody>
+        </table>
+        <h2 id="tableContent" *ngIf="types==undefined">
+            No Types Avaialable at this moment
+        </h2>
+      </div>
+</div>

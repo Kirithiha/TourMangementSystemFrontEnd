@@ -1,0 +1,28 @@
+#errorText {
+    font-size: smaller;
+    color: red;
+    margin-left: 20px;
+}
+
+#card {
+    margin-top: 10px;
+    margin-left: 50px;
+    margin-right: 50px;
+}
+
+#places {
+    margin-top: 20px;
+    margin-left: 300px;
+    min-width: 200px;
+}
+
+#packages {
+    margin-top: 20px;
+    margin-left: 100px;
+    min-width: 200px;
+}
+
+form {
+    font-family: 'Lora', serif;
+    font-size: medium;
+}

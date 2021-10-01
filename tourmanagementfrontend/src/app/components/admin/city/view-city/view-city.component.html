@@ -1,0 +1,36 @@
+<app-dashboard></app-dashboard>
+<div>
+    <div class="form-row">
+        <h1 id="app">List of Cities</h1>
+        <h4 id="filter"> Filters</h4>
+        <div id="selectFilter">
+            <select class="form-control form-control-lg" name="view" style="height: 40px;" requried ngModel (ngModelChange)="getView($event)">
+                <option value=1>View By State Id</option>
+                <option value=2>View All Cities</option>
+            </select>
+        </div>
+    </div>
+    <div id="viewCity">
+        <table class="table" *ngIf= "cities!=undefined">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>City Rto Code</th>
+                <th>City Name</th>
+                <th>State Code</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let city of cities">
+                <td>{{city.id}}</td>
+                <td>{{city.rtoCode}}</td>
+                <td>{{city.name}}</td>
+                <td>{{city.state.code}}-{{city.state.name}}</td>
+            </tr>
+            </tbody>
+        </table>
+        <h2 id="tableContent" *ngIf="cities==undefined">
+            No Cities Avaialable at this moment
+        </h2>
+      </div>
+</div>

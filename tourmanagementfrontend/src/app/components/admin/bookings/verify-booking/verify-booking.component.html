@@ -1,0 +1,40 @@
+<app-dashboard></app-dashboard>
+<div>
+    <div class="row">
+        <div class="col-2" id="search">
+            <!--<input class="form-control" id="myInput" type="text" placeholder="Search..">-->
+        </div>
+        <div class="col-10">
+            <h1 id="app">List of Bookings</h1>
+            <table id="view" class="table" *ngIf= "bookings!=undefined">
+                <thead>
+                <tr>
+                    <th>Customer</th>
+                    <th>Date Of Travel</th>
+                    <th>Traveller Count</th>
+                    <th>Status</th>
+                    <th>Tour Package</th>
+                    <th>Action</th>
+                </tr>
+                </thead>
+                <tbody id="myTable">
+                    <tr *ngFor="let book of bookings">
+                        <td>{{book.customer.name}}-{{book.customer.emailId}}</td>
+                        <td>{{book.dateOfTravel}}</td>
+                        <td>{{book.travellerCount}}</td>
+                        <td>{{book.status}}</td>
+                        <td>{{book.tourPackage.name}}-{{book.tourPackage.city.rtoCode}}</td>
+                        <td> 
+                            <button (click)="approve(book.id)" class="btn btn-info">Approve</button>
+                            <br/><br/>
+                            <button (click)="deny(book.id)" class="btn btn-danger" style="margin-left: 4px; width: 86px;">Deny</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <h2 id="tableContent" *ngIf="bookings==undefined">
+                No Bookings Avaialable at this moment
+            </h2>
+        </div>
+    </div>
+</div>

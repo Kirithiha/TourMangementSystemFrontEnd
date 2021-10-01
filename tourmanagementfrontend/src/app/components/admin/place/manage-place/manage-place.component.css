@@ -1,0 +1,31 @@
+#app {
+    margin-top: 10px;
+    text-align: center;
+    font-family: 'Lora', serif;
+    font-size: 40px;
+}
+
+#view {
+    margin-left: -20px;
+    margin-top: 40px;
+    font-family: 'Lora', serif;
+    font-size: medium;
+}
+
+td, th {
+    text-align: center; 
+}
+
+#search {
+    margin-top: 10px;
+}
+
+#add {
+    margin-top: 6px;
+    min-height: 20px;
+}
+
+#image {
+    width: 200px;
+    height: 180px;
+}

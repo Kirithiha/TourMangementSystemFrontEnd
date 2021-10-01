@@ -1,0 +1,57 @@
+<app-dashboard></app-dashboard>
+<div class="addPlace">
+
+    <h1 id="app">Update Place</h1>
+
+    <form id="addPlace" #userForm="ngForm" (ngSubmit)='updatePlace(userForm.value)' novalidate>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <input type="hidden" class="form-control" name="id" [(ngModel)]="place.id" [value]="place.id" required>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="cityCode">Choose the City Code</label>
+                <input type="text" class="form-control" name="city" [(ngModel)]="city" [value]="city" disabled>
+            </div>
+        </div>
+    
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="placeName">Enter the Place Name</label>
+                <input type="text" class="form-control" name="name" [(ngModel)]="place.name" [value]="place.name"  required #name="ngModel">
+            </div>
+        </div>
+        <div *ngIf="name.touched" id="errorText">
+            <p *ngIf="name.errors?.required">Place Name is Required!!!</p>
+            <p *ngIf="name.errors?.pattern">Place Name must have only alphabets!!!</p>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="description">Enter the Place Description</label>
+                <input type="text" class="form-control" name="description" [(ngModel)]="place.description" [value]="place.description" required #description="ngModel">
+            </div>
+        </div>
+        <div *ngIf="description.touched" id="errorText">
+            <p *ngIf="description.errors?.required">Place Description is Required!!!</p>
+            <p *ngIf="description.errors?.pattern">Place Description must not have any symbols!!!</p>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <img ([ngModel])="place.imageUrl" [src]="place.imageUrl" id="image">
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="type">Choose the Place Type</label>
+                <input type="text" class="form-control" name="type" [(ngModel)]="place.type" [value]="place.type" disabled>
+            </div>
+        </div>
+
+        <button type="submit" id="button" [disabled]="userForm.invalid" class="btn btn-primary">Add Place</button>
+    </form>
+</div>

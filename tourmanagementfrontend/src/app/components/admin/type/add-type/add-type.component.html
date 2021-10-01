@@ -1,0 +1,21 @@
+<app-dashboard></app-dashboard>
+<div class="addType">
+
+    <h1 id="app">Add Type</h1>
+
+    <form id="addType" #userForm="ngForm" (ngSubmit)='saveType(userForm.value)' novalidate>
+
+        <div class="form-row">
+            <div class="form-group col-md-6">
+            <label for="typeName">Enter the Type Name</label>
+            <input type="text" class="form-control" name="typeName" placeholder="Enter the Type Name" pattern="[A-Z a-z]{2,}"ngModel required #name="ngModel">
+            </div>
+        </div>
+        <div *ngIf="name.touched" id="errorText">
+            <p *ngIf="name.errors?.required">State Name is Required!!!</p>
+            <p *ngIf="name.errors?.pattern">State Name must have only alphabets!!!</p>
+        </div>
+
+        <button type="submit" id="button" [disabled]="userForm.invalid" class="btn btn-primary">Add Type</button>
+    </form>
+</div>

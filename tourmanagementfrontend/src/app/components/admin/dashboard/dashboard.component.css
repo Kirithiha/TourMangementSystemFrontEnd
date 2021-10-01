@@ -1,0 +1,25 @@
+/* TO ADD BG COLOR FOR MENU */
+.menutool {
+    background-color: #f8f4f4e5;
+}
+
+/* TO REMOVE UNDERLINE */
+a {
+    text-decoration: none;
+}
+
+#app{
+    margin-left: 440px;
+    font-family: 'Lora', serif;
+    font-size: 30px;
+}
+
+a:hover {
+    color: white;
+}
+
+#logout {
+    margin-left: 360px;
+    font-family: 'Lora', serif;
+    font-size: large;
+}

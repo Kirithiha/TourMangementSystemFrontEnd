@@ -1,0 +1,27 @@
+<app-dashboard></app-dashboard>
+<div>
+    
+    <h1 id="app">List of States</h1>
+
+    <div id="viewState">
+        <table class="table" *ngIf= "states!=undefined">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>State Code</th>
+                <th>State Name</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let state of states">
+                <td>{{state.id}}</td>
+                <td>{{state.code}}</td>
+                <td>{{state.name}}</td>
+            </tr>
+            </tbody>
+        </table>
+        <h2 id="tableContent" *ngIf="states==undefined">
+            No States Avaialable at this moment
+        </h2>
+      </div>
+</div>

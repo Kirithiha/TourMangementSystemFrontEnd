@@ -1,0 +1,41 @@
+#tableContent {
+    text-align: center;
+}
+
+img {
+    height: 300px;
+}
+
+#view{
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+h1 {
+    font-family: 'Lora', serif;
+    font-size: large;
+}
+
+#days {
+    font-family: 'Lora', serif;
+    font-size: medium;
+}
+
+#price {
+    font-family: 'Lora', serif;
+    font-size: medium;
+    margin-left: 20px;
+}
+
+#type {
+    font-family: 'Lora', serif;
+    font-size: medium;
+    margin-top: 20px;
+}
+
+button {
+    margin-top: 10px;
+    margin-left: 120px;
+    min-width: 100px;
+}

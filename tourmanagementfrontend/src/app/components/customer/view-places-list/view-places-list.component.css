@@ -1,0 +1,29 @@
+#tableContent {
+    text-align: center;
+}
+
+img {
+    height: 300px;
+}
+
+#view{
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+h1 {
+    font-family: 'Lora', serif;
+    font-size: large;
+}
+
+p{
+    font-family: 'Lora', serif;
+    font-size: medium;
+}
+
+h5{
+    font-family: 'Lora', serif;
+    font-size: medium;
+    color: crimson; 
+}

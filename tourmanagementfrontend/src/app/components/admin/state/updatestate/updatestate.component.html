@@ -1,0 +1,32 @@
+<app-dashboard></app-dashboard>
+<div class="addState">
+
+    <h1 id="app">Update State</h1>
+
+    <form id="addState" #userForm="ngForm" (ngSubmit)='updateState(userForm.value)' novalidate>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <input type="hidden" class="form-control" name="id" [(ngModel)]="state.id" [value]="state.id" required>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="stateCode">Enter the State Code</label>
+                <input type="text" class="form-control" name="code" [(ngModel)]="state.code" [value]="state.code" disabled>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-md-6">
+            <label for="stateName">Enter the State Name</label>
+            <input type="text" class="form-control" name="name" [(ngModel)]="state.name" [value]="state.name" placeholder="Enter the State Name" pattern="[A-Z a-z]{2,}" required #name="ngModel">
+            </div>
+        </div>
+        <div *ngIf="name.touched" id="errorText">
+            <p *ngIf="name.errors?.required">State Name is Required!!!</p>
+            <p *ngIf="name.errors?.pattern">State Name must have only alphabets!!!</p>
+        </div>
+
+        <button type="submit" id="button" [disabled]="userForm.invalid" class="btn btn-primary">Update State</button>
+    </form>
+</div>

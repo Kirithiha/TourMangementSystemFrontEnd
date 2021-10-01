@@ -1,0 +1,111 @@
+<app-dashboard></app-dashboard>
+<div class="addPackage">
+
+    <h1 id="app">Add Package</h1>
+
+    <form id="addPackage" #userForm="ngForm" (ngSubmit)='savePackage(userForm.value)' novalidate>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="cityCode">Choose the City Code</label>
+                <select class="form-control form-control-lg"  name="city" style="height: 40px;" ngModel (ngModelChange)="getPlaces($event)" required #city="ngModel">
+                    <option *ngFor = "let city of cities" [value]=city.id>{{ city.rtoCode }}-{{ city.name }}</option>
+                </select>
+            </div>
+        </div>
+        <div *ngIf="city.touched" id="errorText">
+            <p *ngIf="city.errors?.required">City Code is Required!!!</p>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="placeName">Enter the Package Name</label>
+                <input type="text" class="form-control" name="name" placeholder="Enter the Package Name" pattern="[A-Z a-z]{2,}" ngModel required #name="ngModel">
+            </div>
+        </div>
+        <div *ngIf="name.touched" id="errorText">
+            <p *ngIf="name.errors?.required">Package Name is Required!!!</p>
+            <p *ngIf="name.errors?.pattern">Package Name must have only alphabets!!!</p>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="type">Choose the Package Type</label>
+                <select class="form-control form-control-lg"  name="type" style="height: 40px;" ngModel required #type="ngModel">
+                    <option *ngFor = "let type of types" [value]=type.typeName>{{ type.typeName }}</option>
+                </select>
+            </div>
+        </div>
+        <div *ngIf="type.touched" id="errorText">
+            <p *ngIf="type.errors?.required">Package Type is Required!!!</p>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="imageUrl">Enter the Package Image Url</label>
+                <input type="text" class="form-control" name="imageUrl" placeholder="Enter the Image Url" ngModel required #imageUrl="ngModel">
+            </div>
+        </div>
+        <div *ngIf="imageUrl.touched" id="errorText">
+            <p *ngIf="imageUrl.errors?.required">Package Image Url is Required!!!</p>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="description">Enter the Package Overview</label>
+                <input type="text" class="form-control" name="overview" placeholder="Enter the Package Description" pattern="[A-Z a-z . 0-9]{2,}" ngModel required #overview="ngModel">
+            </div>
+        </div>
+        <div *ngIf="overview.touched" id="errorText">
+            <p *ngIf="overview.errors?.required">Package Overview is Required!!!</p>
+            <p *ngIf="overview.errors?.pattern">Package Overview must not have any symbols!!!</p>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="description">Enter the Package Price</label>
+                <input type="text" class="form-control" name="price" placeholder="Enter the Package Price" pattern="[0-9.]{2,}" ngModel required #price="ngModel">
+            </div>
+        </div>
+        <div *ngIf="price.touched" id="errorText">
+            <p *ngIf="price.errors?.required">Package Price is Required!!!</p>
+            <p *ngIf="price.errors?.pattern">Package Price must have numbers!!!</p>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <label for="place">Choose the Place under Package</label>
+                <ng-select name="placeList" ngModel [multiple]=true>
+                    <ng-option *ngFor="let place of places" [value]="place.id">{{place.name}}</ng-option>
+                 </ng-select>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="description">Enter the Package Planned Days</label>
+                <input type="number" class="form-control" name="plannedDays" placeholder="Enter the Package Price" ngModel required  (ngModelChange)="getDays($event)" #plannedDays="ngModel">
+            </div>
+        </div>
+        <div *ngIf="plannedDays.touched" id="errorText">
+            <p *ngIf="plannedDays.errors?.required">Planned Days is Required!!!</p>
+            <p *ngIf="plannedDays.errors?.pattern">Planned Days Price must have numbers!!!</p>
+        </div>
+
+        <div *ngIf="plannedDays.touched">
+            <div *ngFor="let day of [].constructor(days); let i = index">
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="title">Enter the Day Description Title</label>
+                        <input type="text" class="form-control" placeholder="Enter the Day Description Title" name="title" (blur)="getTitle($event)" ngModel required #price="ngModel">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="description">Enter the Day Description</label>
+                        <input type="text" class="form-control" placeholder="Enter the Day Description" name="dec" (blur)="getDesc($event)" ngModel required #price="ngModel">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <button type="submit" id="button" [disabled]="userForm.invalid" class="btn btn-primary">Add Package</button>
+    </form>
+</div>

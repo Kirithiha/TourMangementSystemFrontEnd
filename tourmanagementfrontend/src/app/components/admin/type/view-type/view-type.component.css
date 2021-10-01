@@ -1,0 +1,22 @@
+#app {
+    margin-top: 10px;
+    margin-left: 480px;
+    font-family: 'Lora', serif;
+    font-size: 40px;
+}
+
+#viewType {
+    margin-top: 40px;
+    margin-left: 400px;
+    margin-right: 500px;
+    font-family: 'Lora', serif;
+    font-size: medium;
+}
+
+#tableContent {
+    text-align: center;
+}
+
+td, th {
+    text-align: center;
+}
