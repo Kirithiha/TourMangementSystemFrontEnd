@@ -19,24 +19,35 @@ export class LoginComponent implements OnInit {
   }
 
   login(login : Login) {
-    this.service.checkCredential(login.emailId).subscribe((response) => {
+    this.service.checkCredential(login.emailId,login.password).subscribe((response) => {
       this.jsonObject = JSON.parse(JSON.stringify(response));
-      this.loginCheck = this.jsonObject.data;
-      if(login.password == this.service.passwordDecrypt(this.loginCheck.password)) {
-        if(this.loginCheck.role == "Customer") {
-          localStorage.setItem("emailId", this.loginCheck.emailId);
-          this.router.navigate(["home"]);
-        }
-        else if(this.loginCheck.role == "Admin")
-          this.router.navigate(["admin"]);
+      if(this.jsonObject.data) {
+        this.service.get(login.emailId).subscribe((response) => {
+          this.jsonObject = JSON.parse(JSON.stringify(response));
+          this.loginCheck = this.jsonObject.data;
+          if(this.loginCheck.role == "Customer") {
+            localStorage.setItem("emailId", this.loginCheck.emailId);
+            this.router.navigate(["home"]);
+          }
+          else if(this.loginCheck.role == "Admin") {
+            this.router.navigate(["admin"]);
+          } else {
+            this.toastr.info("Incorrect Password");
+          }
+        },
+        (error) => {
+          this.jsonObject = JSON.parse(JSON.stringify(error));
+          var message = this.jsonObject.error.message;
+          window.alert(message);
+        });
       } else {
-        this.toastr.info("Incorrect Password")
+        this.toastr.info("Incorrect Password");
       }
     },
     (error) => {
       this.jsonObject = JSON.parse(JSON.stringify(error));
       var message = this.jsonObject.error.message;
-      window.alert(message);
+      window.alert("No user name found");
     });
   }
 }

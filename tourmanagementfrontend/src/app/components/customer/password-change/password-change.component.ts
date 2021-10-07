@@ -17,38 +17,33 @@ export class PasswordChangeComponent implements OnInit {
   constructor(private service : LoginService, private router : Router, private toastr : ToastrService) { }
 
   ngOnInit(): void {
-    this.getDetails();
   }
 
-  getDetails() {
+  changePassword(password : any) {
     this.emailId = localStorage.getItem("emailId");
-    this.service.checkCredential(this.emailId).subscribe((response) => {
+    this.service.checkCredential(this.emailId, password.currentPassword).subscribe((response) => {
       this.jsonObject = JSON.parse(JSON.stringify(response));
-      this.customer = this.jsonObject.data;
-      console.log(this.customer);
+      if(this.jsonObject.data) {
+        this.service.update(this.emailId,password.newPassword).subscribe((response) => {
+          this.jsonObject = JSON.parse(JSON.stringify(response));
+          var msg = this.jsonObject.message;
+          this.toastr.success(msg);
+          this.router.navigate(["home"]);
+        },
+        (error) => {
+          this.jsonObject = JSON.parse(JSON.stringify(error));
+          var message = this.jsonObject.error.message;
+          window.alert(message);
+        });
+      } else {
+        this.toastr.info("Current password is incorrect");
+      }
     },
     (error) => {
       this.jsonObject = JSON.parse(JSON.stringify(error));
       var message = this.jsonObject.error.message;
       window.alert(message);
     });
-  }
-
-  changePassword(password : any) {
-    if(password.currentPassword == this.service.passwordDecrypt(this.customer?.password)) {
-      this.service.update(this.emailId,password.newPassword).subscribe((response) => {
-        this.jsonObject = JSON.parse(JSON.stringify(response));
-        var msg = this.jsonObject.message;
-        this.toastr.success(msg);
-        this.router.navigate(["home"]);
-      },
-      (error) => {
-        this.jsonObject = JSON.parse(JSON.stringify(error));
-        var message = this.jsonObject.error.message;
-        window.alert(message);
-      });
-    } else {
-      this.toastr.info("Current password is incorrect");
-    }
+    
   }
 }
