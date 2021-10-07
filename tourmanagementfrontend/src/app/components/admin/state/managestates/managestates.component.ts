@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { State, StateService } from 'src/app/services/state/state.service';
 
 
@@ -12,8 +13,11 @@ export class ManagestatesComponent implements OnInit {
 
   private jsonObject : any;
   public states : State[] | undefined;
+  public messageDelete : string = "Are you sure you want to delete it?";
+  public title : string = "Confirmation";
+  public searchText : any;
 
-  constructor(private service : StateService, private router : Router) { }
+  constructor(private service : StateService, private router : Router, private tostr : ToastrService) { }
 
   ngOnInit(): void {
     this.getState();     
@@ -23,8 +27,8 @@ export class ManagestatesComponent implements OnInit {
     this.service.delete(id).subscribe((response) => {
       this.jsonObject = JSON.parse(JSON.stringify(response));
       var message = this.jsonObject.message;
-      window.alert(message);
-      window.location.reload();
+      this.tostr.success(message);
+      this.getState();
     },
     (error) => {
       this.jsonObject = JSON.parse(JSON.stringify(error));

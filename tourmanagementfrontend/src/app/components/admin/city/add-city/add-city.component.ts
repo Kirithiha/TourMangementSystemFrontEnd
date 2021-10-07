@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { City, CityService } from 'src/app/services/city/city.service';
 import { State, StateService } from 'src/app/services/state/state.service';
 
@@ -13,7 +14,7 @@ export class AddCityComponent implements OnInit {
   private jsonObject : any;
   public states : State[] | undefined;
 
-  constructor(private service : CityService, private stateService : StateService, private router : Router) { }
+  constructor(private service : CityService, private stateService : StateService, private router : Router, private toastr : ToastrService) { }
 
   ngOnInit(): void {
     this.getStates();
@@ -27,7 +28,7 @@ export class AddCityComponent implements OnInit {
     (error) => {
       this.jsonObject = JSON.parse(JSON.stringify(error));
       var message = this.jsonObject.error.message;
-      window.alert(message);
+      this.toastr.error(message);
     });
   }
 
@@ -35,13 +36,13 @@ export class AddCityComponent implements OnInit {
     this.service.saveCity(city).subscribe((response) => {
       this.jsonObject = JSON.parse(JSON.stringify(response));
       var message = this.jsonObject.message;
-      window.alert(message);
+      this.toastr.success(message);
       this.router.navigate(["managecity"]);
     },
     (error)=>{
       this.jsonObject = JSON.parse(JSON.stringify(error));
       var message = this.jsonObject.error.message;
-      window.alert(message);
+      this.toastr.error(message);
     });
   }
 }

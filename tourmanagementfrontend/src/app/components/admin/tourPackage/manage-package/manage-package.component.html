@@ -2,7 +2,7 @@
 <div>
     <div class="row">
         <div class="col-2" id="search">
-            <!--<input class="form-control" id="myInput" type="text" placeholder="Search..">-->
+            <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off" placeholder="Search Bookings">
         </div>
         <div class="col-8">
             <h1 id="app">List of Packages</h1>
@@ -18,8 +18,8 @@
                     <th>Action</th>
                 </tr>
                 </thead>
-                <tbody id="myTable">
-                    <tr *ngFor="let package of packages">
+                <tbody>
+                    <tr *ngFor="let package of packages |filter:searchText">
                         <td>{{package.name}}</td>
                         <td>{{package.type}}</td>
                         <td>{{package.price}}</td>
@@ -29,7 +29,7 @@
                         <td>
                             <button (click)="update(package)" class="btn btn-info">Update</button>
                             <br/> <br/>
-                            <button (click)="delete(package.id)" class="btn btn-danger" style="width: 80px;margin-left: 4px;">Delete</button>
+                            <button  mwlConfirmationPopover placement="left" [popoverTitle]="title" [popoverMessage]="messageDelete" (confirm)="delete(package.id)" class="btn btn-danger" style="width: 80px;margin-left: 4px;">Delete</button>
                             <br/><br/>
                             <button (click)="view(package.id)" class="btn btn-info" style="width: 110px;margin-left: 4px;">View Details</button>
                         </td>

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { City, CityService } from 'src/app/services/city/city.service';
 import { State, StateService } from 'src/app/services/state/state.service';
 
@@ -13,12 +14,14 @@ export class ManageCityComponent implements OnInit {
   public cities : City[] | undefined;
   private jsonObject : any;
   public states : State[] | undefined;
+  public popoverMessage : string = "Are you sure you want to delete it?";
+  public title : string = "Delete confirmation";
+  public searchText : any;
 
-  constructor(private service : CityService, private stateService : StateService, private router : Router) { }
+  constructor(private service : CityService, private router : Router, private tostr : ToastrService) { }
 
   ngOnInit(): void {
     this.getAllCities();
-    this.getStates();
   }
 
   getAllCities() {
@@ -29,16 +32,17 @@ export class ManageCityComponent implements OnInit {
     (error) => {
       this.jsonObject = JSON.parse(JSON.stringify(error));
       var message = this.jsonObject.error.message;
-      window.alert(message);
+      window.alert(message);  
     });
   }
 
   delete(id : number|any) {
+    console.log(id);
     this.service.delete(id).subscribe((response) => {
       this.jsonObject = JSON.parse(JSON.stringify(response));
       var message = this.jsonObject.message;
-      window.alert(message);
-      window.location.reload();
+      this.tostr.success(message);
+      this.getAllCities();
     },
     (error) => {
       this.jsonObject = JSON.parse(JSON.stringify(error));
@@ -49,32 +53,6 @@ export class ManageCityComponent implements OnInit {
 
   update(city : City) {
     this.router.navigate(["updatecity"],{state: {city: city}});
-  }
-
-  getCityByState(state : State) {
-    console.log(state.id);
-    this.service.getCityByState(state.id).subscribe((response) => {
-      this.jsonObject = JSON.parse(JSON.stringify(response));
-      this.cities = this.jsonObject.data;
-    },
-    (error) => {
-      this.jsonObject = JSON.parse(JSON.stringify(error));
-      var message = this.jsonObject.error.message;
-      window.alert(message);
-    });
-
-  }
-
-  getStates() {
-    this.stateService.getState().subscribe((response) => {
-      this.jsonObject = JSON.parse(JSON.stringify(response));
-      this.states = this.jsonObject.data;
-    },
-    (error) => {
-      this.jsonObject = JSON.parse(JSON.stringify(error));
-      var message = this.jsonObject.error.message;
-      window.alert(message);
-    });
   }
 
   addCity() {

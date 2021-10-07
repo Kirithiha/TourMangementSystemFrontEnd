@@ -2,7 +2,7 @@
 <div>
     <div class="row">
         <div class="col-2" id="search">
-           <!--<input class="form-control" id="myInput" type="text" placeholder="Search..">-->
+            <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off" placeholder="Search Place">
         </div>
         <div class="col-8" id="tableview">
             <h1 id="app">List of Places</h1>
@@ -17,8 +17,8 @@
                     <th>Action</th>
                 </tr>
                 </thead>
-                <tbody id="myTable">
-                    <tr *ngFor="let place of places">
+                <tbody>
+                    <tr *ngFor="let place of places |filter:searchText">
                         <td>{{place.name}}</td>
                         <td>{{place.type}}</td>
                         <td>{{place.description}}</td>
@@ -27,7 +27,7 @@
                         <td>
                             <button (click)="update(place)" class="btn btn-info">Update</button>
                             <br/> <br/>
-                            <button (click)="delete(place.id)" class="btn btn-danger" style="width: 80px;margin-left: 4px;">Delete</button>
+                            <button  mwlConfirmationPopover placement="left" [popoverTitle]="title" [popoverMessage]="messageDelete" (confirm)="delete(place.id)" class="btn btn-danger" style="width: 80px;margin-left: 4px;">Delete</button>
                         </td>
                     </tr>
                 </tbody>

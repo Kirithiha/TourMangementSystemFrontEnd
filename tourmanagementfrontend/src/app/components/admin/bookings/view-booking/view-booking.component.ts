@@ -11,6 +11,7 @@ export class ViewBookingComponent implements OnInit {
 
   public bookings : Bookings[] | undefined;
   private jsonObject : any;
+  public searchText : any;
 
   constructor(private router : Router, private service : BookingsService) { }
 
@@ -28,17 +29,6 @@ export class ViewBookingComponent implements OnInit {
       var message = this.jsonObject.error.message;
       window.alert(message);
     });
-  }
-
-  getView(id : any) {
-    console.log(id);
-    if(id == 1) {
-      this.router.navigate(["viewbookingbycustomer"]);
-    } else if(id == 2) {
-      this.router.navigate(["viewbookingbypackage"]);
-    }else if(id == 3) {
-      this.router.navigate(["viewbookingbypendings"]);
-    } 
   }
 
   verify() {

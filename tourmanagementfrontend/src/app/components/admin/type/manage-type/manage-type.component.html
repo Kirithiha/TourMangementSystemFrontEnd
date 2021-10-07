@@ -3,7 +3,7 @@
     
     <div class="row">
         <div class="col-2" id="search">
-            <!--<input class="form-control" id="myInput" type="text" placeholder="Search..">-->
+            <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off" placeholder="Search Bookings">
         </div>
         <div class="col-8">
             <h1 id="app">List of Type</h1>
@@ -15,11 +15,11 @@
                         <th>Action</th>
                     </tr>
                     </thead>
-                    <tbody id="myTable">
-                        <tr *ngFor="let type of types">
+                    <tbody>
+                        <tr *ngFor="let type of types |filter:searchText">
                             <td>{{type.typeName}}</td>
                             <td>
-                                <button (click)="delete(type.id)" class="btn btn-danger" style="margin-left: 10px;">Delete</button>
+                                <button mwlConfirmationPopover placement="left" [popoverTitle]="title" [popoverMessage]="messageDelete" (confirm)="delete(type.id)" class="btn btn-danger" style="margin-left: 10px;">Delete</button>
                             </td>
                         </tr>
                     </tbody>

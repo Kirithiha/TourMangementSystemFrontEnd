@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { City, CityService } from 'src/app/services/city/city.service';
 import { PackageItineraryService } from 'src/app/services/packageItinerary/package-itinerary.service';
 import { PackagePlaceService } from 'src/app/services/packagePlace/package-place.service';
@@ -27,7 +28,7 @@ export class AddPackageComponent implements OnInit {
 
   constructor(private service : TourPackageService, private itineraryService : PackageItineraryService, 
     private typeService : TypeService, private cityService : CityService, private placeService : PlaceService, 
-    private packageService : PackagePlaceService, private router : Router) { }
+    private packageService : PackagePlaceService, private router : Router, private tostr : ToastrService) { }
 
   ngOnInit(): void {
     this.getCities();
@@ -96,7 +97,7 @@ export class AddPackageComponent implements OnInit {
         });
       }
       this.saveItinerary();
-      window.alert(message);
+      this.tostr.success(message);
       this.router.navigate(["managepackage"]);
     },
     (error)=>{

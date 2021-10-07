@@ -2,7 +2,7 @@
 <div>
     <div class="row">
         <div class="col-2" id="search">
-            <!--<input class="form-control" id="myInput" type="text" placeholder="Search..">-->
+            <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off" placeholder="Search City">
         </div>
         <div class="col-8">
             <h1 id="app">List of Cities</h1>
@@ -15,14 +15,14 @@
                     <th>Action</th>
                 </tr>
                 </thead>
-                <tbody id="myTable">
-                    <tr *ngFor="let city of cities">
+                <tbody>
+                    <tr *ngFor="let city of cities |filter:searchText">
                         <td>{{city.rtoCode}}</td>
                         <td>{{city.name}}</td>
                         <td>{{city.state.code}}-{{city.state.name}}</td>
                         <td>
                             <button (click)="update(city)" class="btn btn-info">Update</button>
-                            <button (click)="delete(city.id)" class="btn btn-danger" style="margin-left: 10px;">Delete</button>
+                            <button mwlConfirmationPopover placement="left" [popoverTitle]="title" [popoverMessage]="popoverMessage" (confirm)="delete(city.id)"  class="btn btn-danger" style="margin-left: 10px;">Delete</button>
                         </td>
                     </tr>
                     

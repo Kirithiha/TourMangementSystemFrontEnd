@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { City, CityService } from 'src/app/services/city/city.service';
 import { TourPackage, TourPackageService } from 'src/app/services/tourPackage/tour-package.service';
 
@@ -14,24 +15,14 @@ export class ManagePackageComponent implements OnInit {
   private jsonObject : any;
   public cities : City[] | undefined;
   public length : number | any;
+  public messageDelete : string = "Are you sure you want to delete it?";
+  public title : string = "Confirmation";
+  public searchText : any;
 
-  constructor(private cityService : CityService, private service : TourPackageService, private router : Router) { }
+  constructor(private service : TourPackageService, private router : Router, private tostr : ToastrService) { }
 
   ngOnInit(): void {
     this.getPlaces();
-    this.getCities();
-  }
-
-  getCities() {
-    this.cityService.getAllCity().subscribe((response) => {
-      this.jsonObject = JSON.parse(JSON.stringify(response));
-      this.cities = this.jsonObject.data;
-    },
-    (error) => {
-      this.jsonObject = JSON.parse(JSON.stringify(error));
-      var message = this.jsonObject.error.message;
-      window.alert(message);
-    });
   }
 
   getPlaces() {
@@ -47,16 +38,6 @@ export class ManagePackageComponent implements OnInit {
     });
   }
 
-  getView(id : any) {
-    if(id == 1) {
-      this.router.navigate(["viewpackagebycity"]);
-    } else if(id == 2) {
-      this.router.navigate(["viewpackagebytype"]);
-    } else if(id == 3) {
-      this.router.navigate(["viewpackage"]);
-    }
-  }
-
   update(packageId : TourPackage) {
     this.router.navigate(["updatepackage"], {state: {package: packageId}})
   }
@@ -65,7 +46,8 @@ export class ManagePackageComponent implements OnInit {
     this.service.delete(id).subscribe((response) => {
       this.jsonObject = JSON.parse(JSON.stringify(response));
       var message = this.jsonObject.message;
-      window.alert(message);
+      this.tostr.success(message);
+      this.getPlaces();
     },
     (error)=>{
       this.jsonObject = JSON.parse(JSON.stringify(error));
@@ -89,7 +71,7 @@ export class ManagePackageComponent implements OnInit {
   }
 
   addPackage() {
-    this.router.navigate(["managepackage"]);
+    this.router.navigate(["addpackage"]);
   }
 
   view(packageId : any) {

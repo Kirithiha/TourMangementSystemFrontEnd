@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { State, StateService } from 'src/app/services/state/state.service';
 
 @Component({
@@ -11,7 +12,7 @@ export class AddStateComponent implements OnInit {
 
   private jsonObject : any;
 
-  constructor(private service : StateService, private router : Router) { }
+  constructor(private service : StateService, private router : Router, private toastr : ToastrService) { }
 
   ngOnInit(): void {
   }
@@ -20,7 +21,7 @@ export class AddStateComponent implements OnInit {
     this.service.saveState(state).subscribe((response) => {
       this.jsonObject = JSON.parse(JSON.stringify(response));
       var message = this.jsonObject.message;
-      window.alert(message);
+      this.toastr.success(message);
       this.router.navigate(["managestate"]);
 
     },

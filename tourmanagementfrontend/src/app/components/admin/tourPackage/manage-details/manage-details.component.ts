@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { TourPackage, TourPackageService } from 'src/app/services/tourPackage/tour-package.service';
 
 @Component({
@@ -9,18 +10,17 @@ import { TourPackage, TourPackageService } from 'src/app/services/tourPackage/to
 })
 export class ManageDetailsComponent implements OnInit {
 
-  public package : TourPackage | any;
+  public package : TourPackage;
   private jsonObject : any;
-  public city : string | any;
+  public city : string = "";
 
-  constructor(private router : Router, private service : TourPackageService) { 
+  constructor(private router : Router, private service : TourPackageService, private tostr : ToastrService) { 
     const navigation = this.router.getCurrentNavigation();
     const state = navigation?.extras.state as {
       package : TourPackage
     };
     this.package = state.package;
     this.city = this.package.city.rtoCode+"-"+this.package.city.name;
-    console.log(this.package.name)
   }
 
   ngOnInit(): void {
@@ -31,7 +31,7 @@ export class ManageDetailsComponent implements OnInit {
     this.service.update(packageId).subscribe((response) => {
       this.jsonObject = JSON.parse(JSON.stringify(response));
       var message = this.jsonObject.message;
-      window.alert(message);
+      this.tostr.success(message);
       this.router.navigate(["managepackage"]);
     },
     (error)=>{

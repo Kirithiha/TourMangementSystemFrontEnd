@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { Type, TypeService } from 'src/app/services/type/type.service';
 
 @Component({
@@ -11,7 +12,7 @@ export class AddTypeComponent implements OnInit {
 
   private jsonObject : any;
   
-  constructor(private service : TypeService, private router : Router) { }
+  constructor(private service : TypeService, private router : Router, private toastr : ToastrService) { }
 
   ngOnInit(): void {
   }
@@ -21,7 +22,7 @@ export class AddTypeComponent implements OnInit {
       (response) => {
         this.jsonObject = JSON.parse(JSON.stringify(response));
         var message = this.jsonObject.message;
-        window.alert(message);
+        this.toastr.success(message);
         this.router.navigate(["managetype"]);
       },
       (error)=>{

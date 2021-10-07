@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { Bookings, BookingsService } from 'src/app/services/bookings/bookings.service';
 
 @Component({
@@ -11,9 +12,12 @@ export class VerifyBookingComponent implements OnInit {
 
   public bookings : Bookings[] | undefined;
   private jsonObject : any;
-  private booking : Bookings | any;
+  public messageApprove : string = "Are you sure you want to approve it?";
+  public messageDelete : string = "Are you sure you want to deny it?";
+  public title : string = "Confirmation";
+  public searchText : any;
 
-  constructor(private router : Router, private service : BookingsService) { }
+  constructor(private router : Router, private service : BookingsService, private tostr : ToastrService) { }
 
   ngOnInit(): void {
     this.getBookings();
@@ -35,7 +39,7 @@ export class VerifyBookingComponent implements OnInit {
     this.service.update(bookId, "Approved").subscribe((response) => {
       this.jsonObject = JSON.parse(JSON.stringify(response));
       var message = this.jsonObject.message;
-      window.alert(message);
+      this.tostr.success(message);
       this.router.navigate(["viewbooking"]);
     },
     (error) => {
@@ -49,7 +53,7 @@ export class VerifyBookingComponent implements OnInit {
     this.service.update(id, "Denied").subscribe((response) => {
       this.jsonObject = JSON.parse(JSON.stringify(response));
       var message = this.jsonObject.error.message;
-      window.alert(message);
+      this.tostr.success(message);
       this.router.navigate(["viewbooking"]);
     },
     (error) => {

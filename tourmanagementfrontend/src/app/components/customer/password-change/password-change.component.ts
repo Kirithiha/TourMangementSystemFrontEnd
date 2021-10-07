@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { Login, LoginService } from 'src/app/services/login/login.service';
 
 @Component({
@@ -13,7 +14,7 @@ export class PasswordChangeComponent implements OnInit {
   private emailId : string | any;
   private jsonObject : any;
 
-  constructor(private service : LoginService, private router : Router) { }
+  constructor(private service : LoginService, private router : Router, private toastr : ToastrService) { }
 
   ngOnInit(): void {
     this.getDetails();
@@ -38,7 +39,7 @@ export class PasswordChangeComponent implements OnInit {
       this.service.update(this.emailId,password.newPassword).subscribe((response) => {
         this.jsonObject = JSON.parse(JSON.stringify(response));
         var msg = this.jsonObject.message;
-        window.alert(msg);
+        this.toastr.success(msg);
         this.router.navigate(["home"]);
       },
       (error) => {
@@ -47,7 +48,7 @@ export class PasswordChangeComponent implements OnInit {
         window.alert(message);
       });
     } else {
-      window.alert("Current password is incorrect");
+      this.toastr.info("Current password is incorrect");
     }
   }
 }

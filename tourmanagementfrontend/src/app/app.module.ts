@@ -60,6 +60,9 @@ import { ViewPlacesListComponent } from './components/customer/view-places-list/
 import { ViewPackagesListComponent } from './components/customer/view-packages-list/view-packages-list.component';
 import { ViewPackagesDetailsComponent } from './components/customer/view-packages-details/view-packages-details.component';
 import { PasswordChangeComponent } from './components/customer/password-change/password-change.component';
+import { ToastrModule } from 'ngx-toastr';
+import { ConfirmationPopoverModule } from 'angular-confirmation-popover';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 @NgModule({
   declarations: [
@@ -110,6 +113,10 @@ import { PasswordChangeComponent } from './components/customer/password-change/p
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    ToastrModule.forRoot(),
+    ConfirmationPopoverModule.forRoot({
+      confirmButtonType : 'danger'
+    }),
     HttpClientModule,
     MatToolbarModule,
     MatIconModule,
@@ -118,7 +125,8 @@ import { PasswordChangeComponent } from './components/customer/password-change/p
     MatSelectModule,
     FormsModule,
     NgSelectModule,
-    NgbModule
+    NgbModule,
+    Ng2SearchPipeModule
   ],
   providers: [
     StateService,

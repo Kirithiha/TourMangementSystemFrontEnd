@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { City, CityService } from 'src/app/services/city/city.service';
 
 @Component({
@@ -9,11 +10,11 @@ import { City, CityService } from 'src/app/services/city/city.service';
 })
 export class UpdatecityComponent implements OnInit {
 
-  public city : City | any;
+  public city : City;
   private jsonObject : any;
   public state : string | undefined;
 
-  constructor(private router : Router, private service : CityService) { 
+  constructor(private router : Router, private service : CityService, private tostr : ToastrService) { 
     const navigation = this.router.getCurrentNavigation();
     const state = navigation?.extras.state as {
       city : City
@@ -31,7 +32,7 @@ export class UpdatecityComponent implements OnInit {
     this.service.update(city).subscribe((response) => {
       this.jsonObject = JSON.parse(JSON.stringify(response));
       var message = this.jsonObject.message;
-      window.alert(message);
+      this.tostr.success(message);
       this.router.navigate(["managecity"]);
     },
     (error)=>{

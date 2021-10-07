@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { Login, LoginService } from 'src/app/services/login/login.service';
 
 @Component({
@@ -12,7 +13,7 @@ export class LoginComponent implements OnInit {
   private jsonObject : any;
   private loginCheck : Login|any;
 
-  constructor(private service : LoginService, private router : Router) { }
+  constructor(private service : LoginService, private router : Router, private toastr : ToastrService) { }
 
   ngOnInit(): void {
   }
@@ -29,7 +30,7 @@ export class LoginComponent implements OnInit {
         else if(this.loginCheck.role == "Admin")
           this.router.navigate(["admin"]);
       } else {
-        window.alert("Incorrect Password")
+        this.toastr.info("Incorrect Password")
       }
     },
     (error) => {

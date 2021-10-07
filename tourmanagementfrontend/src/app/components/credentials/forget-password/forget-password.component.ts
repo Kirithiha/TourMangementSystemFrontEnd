@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 import { Customer, CustomerService } from 'src/app/services/customer/customer.service';
 import { Login, LoginService } from 'src/app/services/login/login.service';
 
@@ -12,7 +13,7 @@ export class ForgetPasswordComponent implements OnInit {
   private jsonObject : any;
   private loginCheck : Customer | any;
 
-  constructor(private service : LoginService, private customerService : CustomerService) { }
+  constructor(private service : LoginService, private customerService : CustomerService, private toastr : ToastrService) { }
 
   ngOnInit(): void {
   }
@@ -24,7 +25,7 @@ export class ForgetPasswordComponent implements OnInit {
       this.service.forgotPassword(this.loginCheck?.emailId, this.loginCheck?.phoneNumber).subscribe((response)=>{
         this.jsonObject = JSON.parse(JSON.stringify(response));
         var message = this.jsonObject.message;
-        window.alert(message);
+        this.toastr.success(message);
       },
       (error) => {
         this.jsonObject = JSON.parse(JSON.stringify(error));

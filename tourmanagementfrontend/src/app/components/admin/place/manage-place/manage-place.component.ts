@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { City, CityService } from 'src/app/services/city/city.service';
 import { Place, PlaceService } from 'src/app/services/place/place.service';
 
@@ -13,46 +14,22 @@ export class ManagePlaceComponent implements OnInit {
   public places : Place[] | undefined;
   private jsonObject : any;
   public cities : City[] | undefined;
+  public messageDelete : string = "Are you sure you want to delete it?";
+  public title : string = "Confirmation";
+  public searchText : any;
 
-  constructor(private service : PlaceService, private router : Router, private cityService : CityService) { }
+  constructor(private service : PlaceService, private router : Router, private tostr : ToastrService) { }
 
   ngOnInit(): void {
-    this.getCities();
     this.getPlaces();
-  }
-
-  getCities() {
-    this.cityService.getAllCity().subscribe((response) => {
-      this.jsonObject = JSON.parse(JSON.stringify(response));
-      this.cities = this.jsonObject.data;
-      console.log(this.places);
-    },
-    (error) => {
-      this.jsonObject = JSON.parse(JSON.stringify(error));
-      var message = this.jsonObject.error.message;
-      window.alert(message);
-    });
-  }
-
-  getPlaceByCity(city : City) {
-    this.service.getPlaceByCity(city.id).subscribe((response) => {
-      this.jsonObject = JSON.parse(JSON.stringify(response));
-      this.places = this.jsonObject.data;
-      console.log(this.places);
-    },
-    (error) => {
-      this.jsonObject = JSON.parse(JSON.stringify(error));
-      var message = this.jsonObject.error.message;
-      window.alert(message);
-    });
   }
 
   delete(id : number|undefined) {
     this.service.delete(id).subscribe((response) => {
       this.jsonObject = JSON.parse(JSON.stringify(response));
       var message = this.jsonObject.message;
-      window.alert(message);
-      window.location.reload();
+      this.tostr.success(message);
+      this.getPlaces();
     },
     (error) => {
       this.jsonObject = JSON.parse(JSON.stringify(error));
@@ -69,7 +46,6 @@ export class ManagePlaceComponent implements OnInit {
     this.service.getAllPlace().subscribe((response) => {
       this.jsonObject = JSON.parse(JSON.stringify(response));
       this.places = this.jsonObject.data;
-      console.log(this.places);
     },
     (error) => {
       this.jsonObject = JSON.parse(JSON.stringify(error));

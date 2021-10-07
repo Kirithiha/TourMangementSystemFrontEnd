@@ -55,7 +55,6 @@ export class ViewDetailsComponent implements OnInit {
     this.packageService.getByPackage(this.id).subscribe((response) => {
       this.jsonObject = JSON.parse(JSON.stringify(response));
       this.places = this.jsonObject.data;
-      console.log(this.places)
     },
     (error) => {
       this.jsonObject = JSON.parse(JSON.stringify(error));

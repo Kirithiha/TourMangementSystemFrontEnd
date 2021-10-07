@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { State, StateService } from 'src/app/services/state/state.service';
 
 @Component({
@@ -9,10 +10,10 @@ import { State, StateService } from 'src/app/services/state/state.service';
 })
 export class UpdatestateComponent implements OnInit {
 
-  public state : State | any;
+  public state : State;
   private jsonObject : any;
 
-  constructor(private router : Router, private service : StateService) {
+  constructor(private router : Router, private service : StateService, private tostr : ToastrService) {
     const navigation = this.router.getCurrentNavigation();
     const state = navigation?.extras.state as {
       state : State
@@ -28,7 +29,7 @@ export class UpdatestateComponent implements OnInit {
     this.service.update(updatedState).subscribe((response) => {
       this.jsonObject = JSON.parse(JSON.stringify(response));
       var message = this.jsonObject.message;
-      window.alert(message);
+      this.tostr.success(message);
       this.router.navigate(["managestate"]);
     },
     (error)=>{

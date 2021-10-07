@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { City, CityService } from 'src/app/services/city/city.service';
 import { Place, PlaceService } from 'src/app/services/place/place.service';
 import { Type, TypeService } from 'src/app/services/type/type.service';
@@ -15,7 +16,7 @@ export class AddPlaceComponent implements OnInit {
   private jsonObject : any;
   public cities : City[] | undefined;
 
-  constructor(private typeService : TypeService, private cityService : CityService, private service : PlaceService, private router : Router) { }
+  constructor(private typeService : TypeService, private cityService : CityService, private service : PlaceService, private router : Router, private tostr : ToastrService) { }
 
   ngOnInit(): void {
     this.getTypes();
@@ -26,7 +27,6 @@ export class AddPlaceComponent implements OnInit {
     this.typeService.getAllType().subscribe((response) => {
       this.jsonObject = JSON.parse(JSON.stringify(response));
       this.types = this.jsonObject.data;
-      console.log(this.types);
     },
     (error) => {
       this.jsonObject = JSON.parse(JSON.stringify(error));
@@ -51,7 +51,7 @@ export class AddPlaceComponent implements OnInit {
     this.service.savePlace(place).subscribe((response) => {
       this.jsonObject = JSON.parse(JSON.stringify(response));
       var message = this.jsonObject.message;
-      window.alert(message);
+      this.tostr.success(message);
       this.router.navigate(["manageplace"]);
     },
     (error)=>{

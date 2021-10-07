@@ -2,7 +2,7 @@
 <div>
     <div class="row">
         <div class="col-2" id="search">
-           <!-- <input class="form-control" id="myInput" type="text" placeholder="Search..">-->
+            <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off" placeholder="Search Bookings">
         </div>
         <div class="col-8">
             <h1 id="app">List of Bookings</h1>
@@ -17,7 +17,7 @@
                 </tr>
                 </thead>
                 <tbody id="myTable">
-                    <tr *ngFor="let book of bookings">
+                    <tr *ngFor="let book of bookings |filter:searchText">
                         <td>{{book.customer.name}}-{{book.customer.emailId}}</td>
                         <td>{{book.dateOfTravel}}</td>
                         <td>{{book.travellerCount}}</td>

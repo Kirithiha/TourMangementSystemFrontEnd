@@ -2,7 +2,7 @@
 <div>
     <div class="row">
         <div class="col-2" id="search">
-            <!--<input class="form-control" id="myInput" type="text" placeholder="Search..">-->
+            <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off" placeholder="Search Bookings">
         </div>
         <div class="col-10">
             <h1 id="app">List of Bookings</h1>
@@ -17,17 +17,17 @@
                     <th>Action</th>
                 </tr>
                 </thead>
-                <tbody id="myTable">
-                    <tr *ngFor="let book of bookings">
+                <tbody>
+                    <tr *ngFor="let book of bookings |filter:searchText">
                         <td>{{book.customer.name}}-{{book.customer.emailId}}</td>
                         <td>{{book.dateOfTravel}}</td>
                         <td>{{book.travellerCount}}</td>
                         <td>{{book.status}}</td>
                         <td>{{book.tourPackage.name}}-{{book.tourPackage.city.rtoCode}}</td>
                         <td> 
-                            <button (click)="approve(book.id)" class="btn btn-info">Approve</button>
+                            <button mwlConfirmationPopover placement="left" [popoverTitle]="title" [popoverMessage]="messageApprove" (confirm)="approve(book.id)" class="btn btn-info">Approve</button>
                             <br/><br/>
-                            <button (click)="deny(book.id)" class="btn btn-danger" style="margin-left: 4px; width: 86px;">Deny</button>
+                            <button mwlConfirmationPopover placement="left" [popoverTitle]="title" [popoverMessage]="messageDelete" (confirm)="deny(book.id)" class="btn btn-danger" style="margin-left: 4px; width: 86px;">Deny</button>
                         </td>
                     </tr>
                 </tbody>

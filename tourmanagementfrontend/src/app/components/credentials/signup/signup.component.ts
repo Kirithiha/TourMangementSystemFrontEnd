@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 import { Customer, CustomerService } from 'src/app/services/customer/customer.service';
 import { LoginService } from 'src/app/services/login/login.service';
 
@@ -11,7 +12,7 @@ export class SignupComponent implements OnInit {
 
   private jsonObject : any;
 
-  constructor(private service : CustomerService, private loginService : LoginService) { }
+  constructor(private service : CustomerService, private loginService : LoginService, private toastr : ToastrService) { }
 
   ngOnInit(): void {
   }
@@ -26,7 +27,7 @@ export class SignupComponent implements OnInit {
       }
       this.loginService.save(login).subscribe((response) => {
         this.jsonObject = JSON.parse(JSON.stringify(response));
-        window.alert("Register Successfully");
+        this.toastr.success("Register Successfully");
       },
       (error) => {
         this.jsonObject = JSON.parse(JSON.stringify(error));

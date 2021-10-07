@@ -2,7 +2,7 @@
 <div>
     <div class="row">
         <div class="col-2" id="search">
-            <input class="form-control" id="myInput" type="text" placeholder="Search..">
+            <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off" placeholder="Search Bookings">
         </div>
         <div class="col-8">
             <h1 id="app">List of States</h1>
@@ -14,13 +14,13 @@
                     <th>Action</th>
                 </tr>
                 </thead>
-                <tbody id="myTable">
-                <tr *ngFor="let state of states">
+                <tbody>
+                <tr *ngFor="let state of states |filter:searchText">
                     <td>{{state.code}}</td>
                     <td>{{state.name}}</td>
                     <td>
                         <button (click)="update(state)" class="btn btn-info">Update</button>
-                        <button (click)="delete(state.id)" class="btn btn-danger" style="margin-left: 10px;">Delete</button>
+                        <button  mwlConfirmationPopover placement="left" [popoverTitle]="title" [popoverMessage]="messageDelete" (confirm)="delete(state.id)" class="btn btn-danger" style="margin-left: 10px;">Delete</button>
                     </td>
                 </tr>
                 </tbody>

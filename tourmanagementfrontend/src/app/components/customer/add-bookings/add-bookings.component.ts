@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { BookingsService } from 'src/app/services/bookings/bookings.service';
 import { CustomerService } from 'src/app/services/customer/customer.service';
 
@@ -15,7 +16,7 @@ export class AddBookingsComponent implements OnInit {
   private emailId : string | any;
   private jsonObject : any;
 
-  constructor(private router : Router, private customerService : CustomerService, private service : BookingsService) {
+  constructor(private router : Router, private customerService : CustomerService, private service : BookingsService, private toastr : ToastrService) {
     const navigation = this.router.getCurrentNavigation();
     const state = navigation?.extras.state as {
       packageId : number
@@ -51,7 +52,7 @@ export class AddBookingsComponent implements OnInit {
       dateOfTravel : book.dateOfTravel 
     }
     this.service.save(booking).subscribe((response) => {
-      window.alert("Booking added Successfully. Further Approval status will be communicated through mail");
+      this.toastr.success("Booking added Successfully. Further Approval status will be communicated through mail");
       this.router.navigate(["home"]);
     },
     (error) => {
