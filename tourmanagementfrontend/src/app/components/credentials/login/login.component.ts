@@ -47,7 +47,7 @@ export class LoginComponent implements OnInit {
     (error) => {
       this.jsonObject = JSON.parse(JSON.stringify(error));
       var message = this.jsonObject.error.message;
-      window.alert("No user name found");
+      this.toastr.info(message);
     });
   }
 }
