@@ -16,7 +16,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                        <tr *ngFor="let type of types |filter:searchText">
+                        <tr *ngFor="let type of types |filter:searchText |paginate:config">
                             <td>{{type.typeName}}</td>
                             <td>
                                 <button mwlConfirmationPopover placement="left" [popoverTitle]="title" [popoverMessage]="messageDelete" (confirm)="delete(type.id)" class="btn btn-danger" style="margin-left: 10px;">Delete</button>
@@ -25,6 +25,8 @@
                     </tbody>
                 </table>
             </div>
+            <pagination-controls style="text-align: center;color:brown;" (pageChange)="pageChanged($event)">
+            </pagination-controls>
             <h2 id="tableContent" *ngIf="types==undefined">
                 No Types Avaialable at this moment
             </h2>

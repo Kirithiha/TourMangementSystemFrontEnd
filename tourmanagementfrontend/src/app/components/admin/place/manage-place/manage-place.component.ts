@@ -17,6 +17,7 @@ export class ManagePlaceComponent implements OnInit {
   public messageDelete : string = "Are you sure you want to delete it?";
   public title : string = "Confirmation";
   public searchText : any;
+  public config : any;
 
   constructor(private service : PlaceService, private router : Router, private tostr : ToastrService) { }
 
@@ -46,6 +47,7 @@ export class ManagePlaceComponent implements OnInit {
     this.service.getAllPlace().subscribe((response) => {
       this.jsonObject = JSON.parse(JSON.stringify(response));
       this.places = this.jsonObject.data;
+      this.config = { itemsPerPage: 4, currentPage: 1 }
     },
     (error) => {
       this.jsonObject = JSON.parse(JSON.stringify(error));
@@ -56,5 +58,9 @@ export class ManagePlaceComponent implements OnInit {
 
   addPlace() {
     this.router.navigate(["addplace"]);
+  }
+
+  pageChanged(event: any) {
+    this.config.currentPage = event;
   }
 }

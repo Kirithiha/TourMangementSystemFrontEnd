@@ -16,7 +16,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let city of cities |filter:searchText">
+                    <tr *ngFor="let city of cities |filter:searchText |paginate:config">
                         <td>{{city.rtoCode}}</td>
                         <td>{{city.name}}</td>
                         <td>{{city.state.code}}-{{city.state.name}}</td>
@@ -28,6 +28,8 @@
                     
                 </tbody>
             </table>
+            <pagination-controls style="text-align: center;color:brown;" (pageChange)="pageChanged($event)">
+            </pagination-controls>
             <h2 id="tableContent" *ngIf="cities==undefined">
                 No Cities Avaialable at this moment
             </h2>

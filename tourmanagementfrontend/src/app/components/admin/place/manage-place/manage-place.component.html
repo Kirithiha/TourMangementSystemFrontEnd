@@ -18,7 +18,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let place of places |filter:searchText">
+                    <tr *ngFor="let place of places |filter:searchText |paginate:config">
                         <td>{{place.name}}</td>
                         <td>{{place.type}}</td>
                         <td>{{place.description}}</td>
@@ -32,6 +32,8 @@
                     </tr>
                 </tbody>
             </table>
+            <pagination-controls style="text-align: center;color:brown;" (pageChange)="pageChanged($event)">
+            </pagination-controls>
             <h2 id="tableContent" *ngIf="places==undefined">
                 No Places Avaialable at this moment
             </h2>

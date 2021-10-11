@@ -18,6 +18,7 @@ export class ManagePackageComponent implements OnInit {
   public messageDelete : string = "Are you sure you want to delete it?";
   public title : string = "Confirmation";
   public searchText : any;
+  public config : any;
 
   constructor(private service : TourPackageService, private router : Router, private tostr : ToastrService) { }
 
@@ -30,6 +31,7 @@ export class ManagePackageComponent implements OnInit {
       this.jsonObject = JSON.parse(JSON.stringify(response));
       this.packages = this.jsonObject.data;
       this.length = this.packages?.length;
+      this.config = { itemsPerPage: 4, currentPage: 1 }
     },
     (error) => {
       this.jsonObject = JSON.parse(JSON.stringify(error));
@@ -76,5 +78,9 @@ export class ManagePackageComponent implements OnInit {
 
   view(packageId : any) {
     this.router.navigate(["view"], {state: {package: packageId}})
+  }
+
+  pageChanged(event: any) {
+    this.config.currentPage = event;
   }
 }

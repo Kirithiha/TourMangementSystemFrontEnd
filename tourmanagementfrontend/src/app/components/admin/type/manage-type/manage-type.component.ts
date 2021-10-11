@@ -15,6 +15,7 @@ export class ManageTypeComponent implements OnInit {
   public messageDelete : string = "Are you sure you want to delete it?";
   public title : string = "Confirmation";
   public searchText : any;
+  public config : any;
 
   constructor(private service : TypeService, private router : Router, private tostr : ToastrService) { }
 
@@ -30,6 +31,7 @@ export class ManageTypeComponent implements OnInit {
     this.service.getAllType().subscribe((response) => {
       this.jsonObject = JSON.parse(JSON.stringify(response));
       this.types = this.jsonObject.data;
+      this.config = { itemsPerPage: 5, currentPage: 1 }
     },
     (error) => {
       this.jsonObject = JSON.parse(JSON.stringify(error));
@@ -55,5 +57,9 @@ export class ManageTypeComponent implements OnInit {
       var message = this.jsonObject.error.message;
       window.alert(message);
     });
+  }
+
+  pageChanged(event: any) {
+    this.config.currentPage = event;
   }
 }

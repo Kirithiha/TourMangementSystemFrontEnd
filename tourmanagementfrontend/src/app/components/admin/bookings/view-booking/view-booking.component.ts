@@ -12,6 +12,7 @@ export class ViewBookingComponent implements OnInit {
   public bookings : Bookings[] | undefined;
   private jsonObject : any;
   public searchText : any;
+  public config : any;
 
   constructor(private router : Router, private service : BookingsService) { }
 
@@ -23,6 +24,7 @@ export class ViewBookingComponent implements OnInit {
     this.service.getAll().subscribe((response) => {
       this.jsonObject = JSON.parse(JSON.stringify(response));
       this.bookings = this.jsonObject.data;
+      this.config = { itemsPerPage: 5, currentPage: 1 };
     },
     (error) => {
       this.jsonObject = JSON.parse(JSON.stringify(error));
@@ -33,5 +35,9 @@ export class ViewBookingComponent implements OnInit {
 
   verify() {
     this.router.navigate(["verify"]);
+  }
+
+  pageChanged(event: any) {
+    this.config.currentPage = event;
   }
 }

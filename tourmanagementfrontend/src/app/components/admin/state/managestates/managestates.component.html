@@ -15,7 +15,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr *ngFor="let state of states |filter:searchText">
+                <tr *ngFor="let state of states |filter:searchText |paginate:config">
                     <td>{{state.code}}</td>
                     <td>{{state.name}}</td>
                     <td>
@@ -25,6 +25,8 @@
                 </tr>
                 </tbody>
             </table>
+            <pagination-controls style="text-align: center;color:brown;" (pageChange)="pageChanged($event)">
+            </pagination-controls>
             <h2 id="tableContent" *ngIf="states==undefined">
                 No States Avaialable at this moment
             </h2>

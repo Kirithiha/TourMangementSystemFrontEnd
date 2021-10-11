@@ -19,7 +19,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let package of packages |filter:searchText">
+                    <tr *ngFor="let package of packages |filter:searchText |paginate:config">
                         <td>{{package.name}}</td>
                         <td>{{package.type}}</td>
                         <td>{{package.price}}</td>
@@ -36,6 +36,8 @@
                     </tr>
                 </tbody>
             </table>
+            <pagination-controls style="text-align: center;color:brown;" (pageChange)="pageChanged($event)">
+            </pagination-controls>
             <h2 id="tableContent" *ngIf="packages==undefined || length == 0">
                 No Places Avaialable at this moment
             </h2>

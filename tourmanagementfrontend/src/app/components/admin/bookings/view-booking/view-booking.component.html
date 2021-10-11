@@ -17,7 +17,7 @@
                 </tr>
                 </thead>
                 <tbody id="myTable">
-                    <tr *ngFor="let book of bookings |filter:searchText">
+                    <tr *ngFor="let book of bookings |filter:searchText |paginate:config">
                         <td>{{book.customer.name}}-{{book.customer.emailId}}</td>
                         <td>{{book.dateOfTravel}}</td>
                         <td>{{book.travellerCount}}</td>
@@ -26,6 +26,8 @@
                     </tr>
                 </tbody>
             </table>
+            <pagination-controls style="text-align: center;color:brown;" (pageChange)="pageChanged($event)">
+            </pagination-controls>
             <h2 id="tableContent" *ngIf="bookings==undefined">
                 No Bookings Avaialable at this moment
             </h2>

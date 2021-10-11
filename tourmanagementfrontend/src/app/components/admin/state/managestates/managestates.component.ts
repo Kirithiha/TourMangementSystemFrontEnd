@@ -16,6 +16,7 @@ export class ManagestatesComponent implements OnInit {
   public messageDelete : string = "Are you sure you want to delete it?";
   public title : string = "Confirmation";
   public searchText : any;
+  public config : any;
 
   constructor(private service : StateService, private router : Router, private tostr : ToastrService) { }
 
@@ -45,6 +46,7 @@ export class ManagestatesComponent implements OnInit {
     this.service.getState().subscribe((response) => {
       this.jsonObject = JSON.parse(JSON.stringify(response));
       this.states = this.jsonObject.data;
+      this.config = { itemsPerPage: 5, currentPage: 1 }
     },
     (error) => {
       this.jsonObject = JSON.parse(JSON.stringify(error));
@@ -55,5 +57,9 @@ export class ManagestatesComponent implements OnInit {
 
   addState() {
     this.router.navigate(["addstate"]);
+  }
+
+  pageChanged(event: any) {
+    this.config.currentPage = event;
   }
 }

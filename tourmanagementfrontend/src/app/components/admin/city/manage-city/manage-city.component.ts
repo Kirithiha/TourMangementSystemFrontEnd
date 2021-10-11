@@ -17,6 +17,7 @@ export class ManageCityComponent implements OnInit {
   public popoverMessage : string = "Are you sure you want to delete it?";
   public title : string = "Delete confirmation";
   public searchText : any;
+  public config : any;
 
   constructor(private service : CityService, private router : Router, private tostr : ToastrService) { }
 
@@ -28,6 +29,7 @@ export class ManageCityComponent implements OnInit {
     this.service.getAllCity().subscribe((response) => {
       this.jsonObject = JSON.parse(JSON.stringify(response));
       this.cities = this.jsonObject.data;
+      this.config = { itemsPerPage: 6, currentPage: 1 }
     },
     (error) => {
       this.jsonObject = JSON.parse(JSON.stringify(error));
@@ -57,5 +59,9 @@ export class ManageCityComponent implements OnInit {
 
   addCity() {
     this.router.navigate(["addcity"]);
+  }
+
+  pageChanged(event: any) {
+    this.config.currentPage = event;
   }
 }
