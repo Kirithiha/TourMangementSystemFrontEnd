@@ -29,6 +29,7 @@ export class UpdatecityComponent implements OnInit {
   }
 
   updateCity(city : City) {
+    console.log(city)
     this.service.update(city).subscribe((response) => {
       this.jsonObject = JSON.parse(JSON.stringify(response));
       var message = this.jsonObject.message;

@@ -64,6 +64,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { ConfirmationPopoverModule } from 'angular-confirmation-popover';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { UpdateItineraryComponent } from './components/admin/tourPackage/update-itinerary/update-itinerary.component';
 
 @NgModule({
   declarations: [
@@ -108,7 +109,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
     ViewPlacesListComponent,
     ViewPackagesListComponent,
     ViewPackagesDetailsComponent,
-    PasswordChangeComponent
+    PasswordChangeComponent,
+    UpdateItineraryComponent
   ],
   imports: [
     BrowserModule,

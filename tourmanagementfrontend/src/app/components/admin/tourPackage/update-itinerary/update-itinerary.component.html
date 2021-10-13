@@ -1,0 +1,43 @@
+<app-dashboard></app-dashboard>
+<div class="addPackage">
+
+    <h1 id="app">Update Package</h1>
+
+    <form id="addPackage" #userForm="ngForm" (ngSubmit)='update(userForm.value)' novalidate>
+        
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="dayNumber">Enter the Day Number</label>
+                <input type="number" class="form-control" name="dayNumber" [(ngModel)]="itinerary.dayNumber" required #dayNumber="ngModel">
+            </div>
+        </div>
+        <div *ngIf="dayNumber.dirty" id="errorText">
+            <p *ngIf="dayNumber.errors?.required">Day Number is Required!!!</p>
+            <p *ngIf="dayNumber.errors?.pattern">Day Number must have only numbers!!!</p>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="title">Enter the Day Title</label>
+                <input type="text" class="form-control" name="title" [(ngModel)]="itinerary.title" pattern="[A-Z a-z]{2,}" required #title="ngModel">
+            </div>
+        </div>
+        <div *ngIf="title.dirty" id="errorText">
+            <p *ngIf="title.errors?.required">Day Title is Required!!!</p>
+            <p *ngIf="title.errors?.pattern">Day Title must not have any symbols!!!</p>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="description">Enter the Day Description</label>
+                <input type="text" class="form-control" name="dayPlan" [(ngModel)]="itinerary.dayPlan" pattern="[A-Z a-z . 0-9]{2,}" required #dayPlan="ngModel">
+            </div>
+        </div>
+        <div *ngIf="dayPlan.dirty" id="errorText">
+            <p *ngIf="dayPlan.errors?.required">Day Plan is Required!!!</p>
+            <p *ngIf="dayPlan.errors?.pattern">Day Plan must not have any symbols!!!</p>
+        </div>
+
+        <button type="submit" id="button" [disabled]="userForm.invalid" class="btn btn-primary">Update Package</button>
+    </form>
+</div>

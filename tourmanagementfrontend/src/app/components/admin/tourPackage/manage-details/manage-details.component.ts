@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { TourPackage, TourPackageService } from 'src/app/services/tourPackage/tour-package.service';
+import { Type, TypeService } from 'src/app/services/type/type.service';
 
 @Component({
   selector: 'app-manage-details',
@@ -13,8 +14,9 @@ export class ManageDetailsComponent implements OnInit {
   public package : TourPackage;
   private jsonObject : any;
   public city : string = "";
+  public types : Type[] | undefined;
 
-  constructor(private router : Router, private service : TourPackageService, private tostr : ToastrService) { 
+  constructor(private router : Router, private typeService : TypeService, private service : TourPackageService, private tostr : ToastrService) { 
     const navigation = this.router.getCurrentNavigation();
     const state = navigation?.extras.state as {
       package : TourPackage
@@ -24,6 +26,20 @@ export class ManageDetailsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.getTypes();
+  }
+
+  getTypes() {
+    this.typeService.getAllType().subscribe((response) => {
+      this.jsonObject = JSON.parse(JSON.stringify(response));
+      this.types = this.jsonObject.data;
+      console.log(this.types);
+    },
+    (error) => {
+      this.jsonObject = JSON.parse(JSON.stringify(error));
+      var message = this.jsonObject.error.message;
+      window.alert(message);
+    });
   }
 
   updatePackage(packageId : TourPackage) {

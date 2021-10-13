@@ -12,7 +12,7 @@
                 </select>
             </div>
         </div>
-        <div *ngIf="state.touched" id="errorText">
+        <div *ngIf="state.dirty" id="errorText">
             <p *ngIf="state.errors?.required">State Code is Required!!!</p>
         </div>
 
@@ -22,7 +22,7 @@
                 <input type="text" class="form-control" name="rtoCode" placeholder="Enter the Rto Code" pattern="[A-Z]{2}[0-9]{2}[A-Z]{0,1}" ngModel required #rtoCode="ngModel">
             </div>
         </div>
-        <div *ngIf="rtoCode.touched" id="errorText">
+        <div *ngIf="rtoCode.dirty" id="errorText">
             <p *ngIf="rtoCode.errors?.required">City Code is Required!!!</p>
             <p *ngIf="rtoCode.errors?.pattern">Exactly 5 or 4 characters are required!!!</p>
         </div>
@@ -33,7 +33,7 @@
                 <input type="text" class="form-control" name="name" placeholder="Enter the City Name" pattern="[A-Z a-z]{2,}"ngModel required #name="ngModel">
             </div>
         </div>
-        <div *ngIf="name.touched" id="errorText">
+        <div *ngIf="name.dirty" id="errorText">
             <p *ngIf="name.errors?.required">City Name is Required!!!</p>
             <p *ngIf="name.errors?.pattern">City Name must have only alphabets!!!</p>
         </div>

@@ -41,7 +41,7 @@ export class ManagePackageComponent implements OnInit {
   }
 
   update(packageId : TourPackage) {
-    this.router.navigate(["updatepackage"], {state: {package: packageId}})
+    this.router.navigate(["updatepackage"], {state: {package: packageId}});
   }
 
   delete(id : number|any) {

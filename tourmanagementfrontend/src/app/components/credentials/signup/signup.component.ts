@@ -25,6 +25,7 @@ export class SignupComponent implements OnInit {
         role : "Customer",
         password : customer.phoneNumber
       }
+      console.log(login);
       this.loginService.save(login).subscribe((response) => {
         this.jsonObject = JSON.parse(JSON.stringify(response));
         this.toastr.success("Register Successfully");

@@ -8,13 +8,13 @@
         </ol>
         <div class="carousel-inner">
           <div class="carousel-item active">
-            <img class="d-block w-100" style="height: 340px;" src="https://www.planetware.com/wpimages/2019/11/india-best-places-to-visit-agra.jpg" alt="First slide">
+            <img class="d-block w-100" style="height: 340px;" src="../../../../assets/tajMahal.jpg" alt="First slide">
           </div>
           <div class="carousel-item">
-            <img class="d-block w-100" style="height: 340px;" src="https://www.planetware.com/wpimages/2019/11/india-best-places-to-visit-mumbai.jpg" alt="Second slide">
+            <img class="d-block w-100" style="height: 340px;" src="../../../../assets/mumbai.jpg" alt="Second slide">
           </div>
           <div class="carousel-item">
-            <img class="d-block w-100" style="height: 340px;" src="https://cdn.britannica.com/12/100812-050-27483D5E/Mamallapuram-Shore-Temple-Chennai-India-Tamil-Nadu.jpg" alt="Third slide">
+            <img class="d-block w-100" style="height: 340px;" src="../../../../assets/mamallpuram.jpg" alt="Third slide">
           </div>
         </div>
         <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -43,10 +43,10 @@
                         </select>
                     </div>
                 </div>
-                <div *ngIf="state.touched" id="errorText">
+                <div *ngIf="state.dirty" id="errorText">
                     <p *ngIf="state.errors?.required">State Code is Required!!!</p>
                 </div>
-                <div *ngIf="city.touched" id="errorText">
+                <div *ngIf="city.dirty" id="errorText">
                     <p *ngIf="city.errors?.required">City Code is Required!!!</p>
                 </div>
  

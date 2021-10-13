@@ -10,9 +10,9 @@
                 <input type="text" class="form-control" name="code" placeholder="Enter the State Code as AB" pattern="[A-Z]{2}" ngModel required #code="ngModel">
             </div>
         </div>
-        <div *ngIf="code.touched" id="errorText">
+        <div *ngIf="code.dirty" id="errorText">
             <p *ngIf="code.errors?.required">State Code is Required!!!</p>
-            <p *ngIf="code.errors?.pattern">Exactly 2 characters are required!!!</p>
+            <p *ngIf="code.errors?.pattern">Exactly 2 capital characters are required!!!</p>
         </div>
 
         <div class="form-row">
@@ -21,7 +21,7 @@
             <input type="text" class="form-control" name="name" placeholder="Enter the State Name" pattern="[A-Z a-z]{2,}"ngModel required #name="ngModel">
             </div>
         </div>
-        <div *ngIf="name.touched" id="errorText">
+        <div *ngIf="name.dirty" id="errorText">
             <p *ngIf="name.errors?.required">State Name is Required!!!</p>
             <p *ngIf="name.errors?.pattern">State Name must have only alphabets!!!</p>
         </div>

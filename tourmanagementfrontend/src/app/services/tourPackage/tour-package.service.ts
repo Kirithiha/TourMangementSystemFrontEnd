@@ -47,7 +47,8 @@ export class TourPackageService {
       id : tourpacakge.id,
       name : tourpacakge.name,
       price : tourpacakge.price,
-      overview : tourpacakge.overview
+      overview : tourpacakge.overview,
+      type : tourpacakge.type
     }
     return this.http.put(this.url+"/update",updatedPackage);
   }

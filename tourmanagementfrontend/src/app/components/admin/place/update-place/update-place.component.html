@@ -9,13 +9,6 @@
                 <input type="hidden" class="form-control" name="id" [(ngModel)]="place.id" [value]="place.id" required>
             </div>
         </div>
-
-        <div class="form-row">
-            <div class="form-group col-md-6">
-                <label for="cityCode">Choose the City Code</label>
-                <input type="text" class="form-control" name="city" [(ngModel)]="city" [value]="city" disabled>
-            </div>
-        </div>
     
         <div class="form-row">
             <div class="form-group col-md-6">
@@ -23,7 +16,7 @@
                 <input type="text" class="form-control" name="name" [(ngModel)]="place.name" [value]="place.name"  required #name="ngModel">
             </div>
         </div>
-        <div *ngIf="name.touched" id="errorText">
+        <div *ngIf="name.dirty" id="errorText">
             <p *ngIf="name.errors?.required">Place Name is Required!!!</p>
             <p *ngIf="name.errors?.pattern">Place Name must have only alphabets!!!</p>
         </div>
@@ -34,21 +27,38 @@
                 <input type="text" class="form-control" name="description" [(ngModel)]="place.description" [value]="place.description" required #description="ngModel">
             </div>
         </div>
-        <div *ngIf="description.touched" id="errorText">
+        <div *ngIf="description.dirty" id="errorText">
             <p *ngIf="description.errors?.required">Place Description is Required!!!</p>
             <p *ngIf="description.errors?.pattern">Place Description must not have any symbols!!!</p>
         </div>
 
         <div class="form-row">
             <div class="form-group col-md-6">
-                <img ([ngModel])="place.imageUrl" [src]="place.imageUrl" id="image">
+                <label for="imageUrl">Enter the Place Image Url</label>
+                <input type="text" class="form-control" name="imageUrl" [(ngModel)]="place.imageUrl" [value]="place.imageUrl" required #imageUrl="ngModel">
+                <br/><img ([ngModel])="place.imageUrl" [src]="imageUrl.value" id="image">
             </div>
+        </div>
+        <div *ngIf="imageUrl.dirty" id="errorText">
+            <p *ngIf="imageUrl.errors?.required">Place Image Url is Required!!!</p>
         </div>
 
         <div class="form-row">
             <div class="form-group col-md-6">
                 <label for="type">Choose the Place Type</label>
-                <input type="text" class="form-control" name="type" [(ngModel)]="place.type" [value]="place.type" disabled>
+                <select class="form-control form-control-lg" placeholder="place.type"  name="type" style="height: 40px;" [(ngModel)]="place.type" required #type="ngModel">
+                    <option *ngFor = "let type of types" [value]=type.typeName>{{ type.typeName }}</option>
+                </select>
+            </div>
+        </div>
+        <div *ngIf="type.dirty" id="errorText">
+            <p *ngIf="type.errors?.required">Place Type is Required!!!</p>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="cityCode">Choose the City Code</label>
+                <input type="text" class="form-control" name="city" [(ngModel)]="city" [value]="city" disabled>
             </div>
         </div>
 

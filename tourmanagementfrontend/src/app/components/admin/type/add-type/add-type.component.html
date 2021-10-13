@@ -11,7 +11,7 @@
             <input type="text" class="form-control" name="typeName" placeholder="Enter the Type Name" pattern="[A-Z a-z]{2,}"ngModel required #name="ngModel">
             </div>
         </div>
-        <div *ngIf="name.touched" id="errorText">
+        <div *ngIf="name.dirty" id="errorText">
             <p *ngIf="name.errors?.required">State Name is Required!!!</p>
             <p *ngIf="name.errors?.pattern">State Name must have only alphabets!!!</p>
         </div>

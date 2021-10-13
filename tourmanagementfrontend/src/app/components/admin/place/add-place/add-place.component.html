@@ -12,7 +12,7 @@
                 </select>
             </div>
         </div>
-        <div *ngIf="city.touched" id="errorText">
+        <div *ngIf="city.dirty" id="errorText">
             <p *ngIf="city.errors?.required">City Code is Required!!!</p>
         </div>
 
@@ -22,7 +22,7 @@
                 <input type="text" class="form-control" name="name" placeholder="Enter the Place Name" pattern="[A-Z a-z]{2,}" ngModel required #name="ngModel">
             </div>
         </div>
-        <div *ngIf="name.touched" id="errorText">
+        <div *ngIf="name.dirty" id="errorText">
             <p *ngIf="name.errors?.required">Place Name is Required!!!</p>
             <p *ngIf="name.errors?.pattern">Place Name must have only alphabets!!!</p>
         </div>
@@ -35,7 +35,7 @@
                 </select>
             </div>
         </div>
-        <div *ngIf="type.touched" id="errorText">
+        <div *ngIf="type.dirty" id="errorText">
             <p *ngIf="type.errors?.required">Place Type is Required!!!</p>
         </div>
 
@@ -45,19 +45,18 @@
                 <input type="text" class="form-control" name="imageUrl" placeholder="Enter the Image Url" ngModel required #imageUrl="ngModel">
             </div>
         </div>
-        <div *ngIf="imageUrl.touched" id="errorText">
+        <div *ngIf="imageUrl.dirty" id="errorText">
             <p *ngIf="imageUrl.errors?.required">Place Image Url is Required!!!</p>
         </div>
 
         <div class="form-row">
             <div class="form-group col-md-6">
                 <label for="description">Enter the Place Description</label>
-                <input type="text" class="form-control" name="description" placeholder="Enter the Place Description" pattern="[A-Z a-z . 0-9]{2,}" ngModel required #description="ngModel">
+                <input type="text" class="form-control" name="description" placeholder="Enter the Place Description" ngModel required #description="ngModel">
             </div>
         </div>
-        <div *ngIf="description.touched" id="errorText">
+        <div *ngIf="description.dirty" id="errorText">
             <p *ngIf="description.errors?.required">Place Description is Required!!!</p>
-            <p *ngIf="description.errors?.pattern">Place Description must not have any symbols!!!</p>
         </div>
 
         <button type="submit" id="button" [disabled]="userForm.invalid" class="btn btn-primary">Add Place</button>

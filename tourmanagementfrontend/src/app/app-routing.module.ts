@@ -23,6 +23,7 @@ import { ViewStateComponent } from './components/admin/state/view-state/view-sta
 import { AddPackageComponent } from './components/admin/tourPackage/add-package/add-package.component';
 import { ManageDetailsComponent } from './components/admin/tourPackage/manage-details/manage-details.component';
 import { ManagePackageComponent } from './components/admin/tourPackage/manage-package/manage-package.component';
+import { UpdateItineraryComponent } from './components/admin/tourPackage/update-itinerary/update-itinerary.component';
 import { ViewDetailsComponent } from './components/admin/tourPackage/view-details/view-details.component';
 import { ViewPackageByCityComponent } from './components/admin/tourPackage/view-package-by-city/view-package-by-city.component';
 import { ViewPackageByTypeComponent } from './components/admin/tourPackage/view-package-by-type/view-package-by-type.component';
@@ -84,6 +85,7 @@ const routes: Routes = [
   {path : "addbooking", component : AddBookingsComponent},
   {path : "viewbookingcustomer", component : ViewBookingsCustomerComponent},
   {path : "changepassword", component : PasswordChangeComponent},
+  {path : "updateitinerary", component : UpdateItineraryComponent},
   {path : '', redirectTo : 'login', pathMatch : 'full'}
 ];
 

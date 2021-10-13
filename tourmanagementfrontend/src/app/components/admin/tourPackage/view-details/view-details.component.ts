@@ -74,4 +74,9 @@ export class ViewDetailsComponent implements OnInit {
       window.alert(message);
     });
   }
+
+  update(itie : PackageItinerary) {
+    console.log(itie);
+    this.router.navigate(["updateitinerary"], {state: {itinerary: itie}})
+  }
 }

@@ -37,7 +37,8 @@ export class CityService {
   update(city : City) {
     const updatedCity = {
       id : city.id,
-      name : city.name
+      name : city.name,
+      rtoCode : city.rtoCode
     }
     return this.http.put(this.url+"/update",updatedCity);
   }

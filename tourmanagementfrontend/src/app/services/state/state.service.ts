@@ -30,7 +30,8 @@ export class StateService {
   update(state : State) {
     const updatedState = {
       id : state.id,
-      name : state.name
+      name : state.name,
+      code : state.code
     }
     return this.http.put(this.url+"/update",updatedState);
   }

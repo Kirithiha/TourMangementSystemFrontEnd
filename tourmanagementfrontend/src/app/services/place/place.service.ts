@@ -38,7 +38,9 @@ export class PlaceService {
     const updatedPlace = {
       id : place.id,
       name : place.name,
-      description : place.description
+      description : place.description,
+      imageUrl : place.imageUrl,
+      type : place.type
     }
     return this.http.put(this.url+"/update",updatedPlace);
   }

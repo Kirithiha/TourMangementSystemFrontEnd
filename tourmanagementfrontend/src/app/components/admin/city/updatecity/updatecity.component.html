@@ -9,18 +9,16 @@
                 <input type="hidden" class="form-control" name="id" [(ngModel)]="city.id" [value]="city.id" required>
             </div>
         </div>
-        <div class="form-row">
-            <div class="form-group col-md-6">
-                <label for="stateCode">Choose the State Code</label>
-                <input type="text" class="form-control" name="state" [(ngModel)]="state" [value]="state" disabled>
-            </div>
-        </div>
 
         <div class="form-row">
             <div class="form-group col-md-6">
                 <label for="cityRtoCode">Enter the City Code</label>
-                <input type="text" class="form-control" name="rtoCode" [(ngModel)]="city.rtoCode" [value]="city.rtoCode" disabled>
+                <input type="text" class="form-control" name="rtoCode" [(ngModel)]="city.rtoCode" [value]="city.rtoCode" #rtoCode="ngModel">
             </div>
+        </div>
+        <div *ngIf="rtoCode.dirty" id="errorText">
+            <p *ngIf="rtoCode.errors?.required">City Code is Required!!!</p>
+            <p *ngIf="rtoCode.errors?.pattern">Exactly 5 or 4 characters are required!!!</p>
         </div>
 
         <div class="form-row">
@@ -32,6 +30,13 @@
         <div *ngIf="name.touched" id="errorText">
             <p *ngIf="name.errors?.required">City Name is Required!!!</p>
             <p *ngIf="name.errors?.pattern">City Name must have only alphabets!!!</p>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="stateCode">Choose the State Code</label>
+                <input type="text" class="form-control" name="state" [(ngModel)]="state" [value]="state" disabled>
+            </div>
         </div>
 
         <button type="submit" id="button" [disabled]="userForm.invalid" class="btn btn-primary">Update City</button>
