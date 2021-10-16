@@ -1,14 +1,18 @@
 <app-dashboard></app-dashboard>
 <div>
     <div class="row">
-        <div class="col-2" id="search">
-            <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off" placeholder="Search Place">
+        <div class="col-1">
+            
         </div>
-        <div class="col-8" id="tableview">
+        <div class="col-9" id="tableview">
             <h1 id="app">List of Places</h1>
+            <div  id="search">
+                <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off" placeholder="Search Place">
+            </div>
             <table id="view" class="table" *ngIf= "places!=undefined">
                 <thead>
                 <tr>
+                    <th>Sl.No</th>
                     <th>Name</th>
                     <th>Type</th>
                     <th>Description</th>
@@ -18,7 +22,8 @@
                 </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let place of places |filter:searchText |paginate:config">
+                    <tr *ngFor="let place of places |filter:searchText |paginate:config; let i = index">
+                        <td>{{i + 1}}</td>
                         <td>{{place.name}}</td>
                         <td>{{place.type}}</td>
                         <td>{{place.description}}</td>

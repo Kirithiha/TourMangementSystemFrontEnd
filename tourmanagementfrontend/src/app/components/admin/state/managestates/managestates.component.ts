@@ -46,7 +46,7 @@ export class ManagestatesComponent implements OnInit {
     this.service.getState().subscribe((response) => {
       this.jsonObject = JSON.parse(JSON.stringify(response));
       this.states = this.jsonObject.data;
-      this.config = { itemsPerPage: 5, currentPage: 1 }
+      this.config = { itemsPerPage: 4 , currentPage: 1 }
     },
     (error) => {
       this.jsonObject = JSON.parse(JSON.stringify(error));

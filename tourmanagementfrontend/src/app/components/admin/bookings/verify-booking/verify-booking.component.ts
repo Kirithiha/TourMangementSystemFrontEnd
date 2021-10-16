@@ -16,6 +16,7 @@ export class VerifyBookingComponent implements OnInit {
   public messageDelete : string = "Are you sure you want to deny it?";
   public title : string = "Confirmation";
   public searchText : any;
+  public config : any;
 
   constructor(private router : Router, private service : BookingsService, private tostr : ToastrService) { }
 
@@ -27,6 +28,7 @@ export class VerifyBookingComponent implements OnInit {
     this.service.getPendings().subscribe((response) => {
       this.jsonObject = JSON.parse(JSON.stringify(response));
       this.bookings = this.jsonObject.data;
+      this.config = { itemsPerPage: 5, currentPage: 1 };
     },
     (error) => {
       this.jsonObject = JSON.parse(JSON.stringify(error));
@@ -63,4 +65,7 @@ export class VerifyBookingComponent implements OnInit {
     });
   }
 
+  pageChanged(event: any) {
+    this.config.currentPage = event;
+  }
 }

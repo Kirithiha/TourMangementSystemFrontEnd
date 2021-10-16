@@ -7,7 +7,6 @@
         <table class="table" *ngIf= "bookings!=undefined && length!=0">
             <thead>
             <tr>
-                <th>ID</th>
                 <th>Customer</th>
                 <th>Date Of Travel</th>
                 <th>Traveller Count</th>
@@ -17,7 +16,6 @@
             </thead>
             <tbody>
             <tr *ngFor="let book of bookings">
-                <td>{{book.id}}</td>
                 <td>{{book.customer.name}}-{{book.customer.emailId}}</td>
                 <td>{{book.dateOfTravel}}</td>
                 <td>{{book.travellerCount}}</td>

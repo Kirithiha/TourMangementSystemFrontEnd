@@ -1,21 +1,26 @@
 <app-dashboard></app-dashboard>
 <div>
     <div class="row">
-        <div class="col-2" id="search">
-            <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off" placeholder="Search State">
+        <div class="col-1" >
+           
         </div>
-        <div class="col-8">
+        <div class="col-9">
             <h1 id="app">List of States</h1>
+            <div id="search">
+                <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off" placeholder="Search State">
+            </div>
             <table id="view" class="table" *ngIf= "states!=undefined">
                 <thead>
                 <tr>
+                    <th>Sl.No</th>
                     <th>State Code</th>
                     <th>State Name</th>
                     <th>Action</th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr *ngFor="let state of states |filter:searchText |paginate:config">
+                <tr *ngFor="let state of states |filter:searchText |paginate:config; let i = index">
+                    <td>{{i + 1}}</td>
                     <td>{{state.code}}</td>
                     <td>{{state.name}}</td>
                     <td>

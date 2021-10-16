@@ -10,6 +10,7 @@ import { ManageCityComponent } from './components/admin/city/manage-city/manage-
 import { UpdatecityComponent } from './components/admin/city/updatecity/updatecity.component';
 import { ViewCityByStateComponent } from './components/admin/city/view-city-by-state/view-city-by-state.component';
 import { ViewCityComponent } from './components/admin/city/view-city/view-city.component';
+import { CustomersComponent } from './components/admin/customers/customers.component';
 import { DashboardComponent } from './components/admin/dashboard/dashboard.component';
 import { AddPlaceComponent } from './components/admin/place/add-place/add-place.component';
 import { ManagePlaceComponent } from './components/admin/place/manage-place/manage-place.component';
@@ -86,6 +87,7 @@ const routes: Routes = [
   {path : "viewbookingcustomer", component : ViewBookingsCustomerComponent},
   {path : "changepassword", component : PasswordChangeComponent},
   {path : "updateitinerary", component : UpdateItineraryComponent},
+  {path : "customers", component : CustomersComponent},
   {path : '', redirectTo : 'login', pathMatch : 'full'}
 ];
 

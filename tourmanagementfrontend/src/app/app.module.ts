@@ -65,6 +65,7 @@ import { ConfirmationPopoverModule } from 'angular-confirmation-popover';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { UpdateItineraryComponent } from './components/admin/tourPackage/update-itinerary/update-itinerary.component';
+import { CustomersComponent } from './components/admin/customers/customers.component';
 
 @NgModule({
   declarations: [
@@ -110,7 +111,8 @@ import { UpdateItineraryComponent } from './components/admin/tourPackage/update-
     ViewPackagesListComponent,
     ViewPackagesDetailsComponent,
     PasswordChangeComponent,
-    UpdateItineraryComponent
+    UpdateItineraryComponent,
+    CustomersComponent
   ],
   imports: [
     BrowserModule,

@@ -29,7 +29,7 @@ export class ManageCityComponent implements OnInit {
     this.service.getAllCity().subscribe((response) => {
       this.jsonObject = JSON.parse(JSON.stringify(response));
       this.cities = this.jsonObject.data;
-      this.config = { itemsPerPage: 6, currentPage: 1 }
+      this.config = { itemsPerPage: 4, currentPage: 1 }
     },
     (error) => {
       this.jsonObject = JSON.parse(JSON.stringify(error));

@@ -1,0 +1,39 @@
+<app-dashboard></app-dashboard>
+<div>
+    <div class="row">
+        <div class="col-1">
+        </div>
+        <div class="col-10">
+            <h1 id="app">List of Customers</h1>
+            <div id="search">
+                <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off" placeholder="Search Bookings">
+            </div>
+            <table id="view" class="table" *ngIf= "customers!=undefined">
+                <thead>
+                <tr>
+                    <th>Sl.No</th>
+                    <th>Name</th>
+                    <th>Email Id</th>
+                    <th>Phone Number</th>
+                </tr>
+                </thead>
+                <tbody id="myTable">
+                    <tr *ngFor="let cust of customers |filter:searchText |paginate:config; let i = index;">
+                        <td>{{i + 1}}</td>
+                        <td>{{cust.name}}</td>
+                        <td>{{cust.emailId}}</td>
+                        <td>{{cust.phoneNumber}}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <h2 id="tableContent" *ngIf="customers==undefined">
+                No Customers Avaialable at this moment
+                <pagination-controls style="text-align: center;color:brown;" (pageChange)="pageChanged($event)">
+                </pagination-controls>
+            </h2>
+        </div>
+        <div class="col-1">
+          
+        </div>
+    </div>
+</div>

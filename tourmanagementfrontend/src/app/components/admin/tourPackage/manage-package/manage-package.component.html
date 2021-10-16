@@ -1,14 +1,17 @@
 <app-dashboard></app-dashboard>
 <div>
     <div class="row">
-        <div class="col-2" id="search">
-            <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off" placeholder="Search Package">
+        <div class="col-1">
         </div>
-        <div class="col-8">
+        <div class="col-9">
             <h1 id="app">List of Packages</h1>
+            <div  id="search">
+                <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off" placeholder="Search Package">
+            </div>
             <table id="view" class="table" *ngIf= "packages!=undefined && length!=0">
                 <thead>
                 <tr>
+                    <th>Sl.No</th>
                     <th>Name</th>
                     <th>Type</th>
                     <th>Price</th>
@@ -19,7 +22,8 @@
                 </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let package of packages |filter:searchText |paginate:config">
+                    <tr *ngFor="let package of packages |filter:searchText |paginate:config; let i = index;">
+                        <td>{{i + 1}}</td>
                         <td>{{package.name}}</td>
                         <td>{{package.type}}</td>
                         <td>{{package.price}}</td>

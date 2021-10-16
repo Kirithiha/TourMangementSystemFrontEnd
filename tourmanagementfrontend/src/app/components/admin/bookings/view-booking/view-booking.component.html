@@ -1,14 +1,17 @@
 <app-dashboard></app-dashboard>
 <div>
     <div class="row">
-        <div class="col-2" id="search">
-            <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off" placeholder="Search Bookings">
+        <div class="col-1">
         </div>
-        <div class="col-8">
+        <div class="col-9">
             <h1 id="app">List of Bookings</h1>
+            <div id="search">
+                <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off" placeholder="Search Bookings">
+            </div>
             <table id="view" class="table" *ngIf= "bookings!=undefined">
                 <thead>
                 <tr>
+                    <th>Sl.No</th>
                     <th>Customer</th>
                     <th>Date Of Travel</th>
                     <th>Traveller Count</th>
@@ -17,7 +20,8 @@
                 </tr>
                 </thead>
                 <tbody id="myTable">
-                    <tr *ngFor="let book of bookings |filter:searchText |paginate:config">
+                    <tr *ngFor="let book of bookings |filter:searchText |paginate:config; let i = index;">
+                        <td>{{i + 1}}</td>
                         <td>{{book.customer.name}}-{{book.customer.emailId}}</td>
                         <td>{{book.dateOfTravel}}</td>
                         <td>{{book.travellerCount}}</td>

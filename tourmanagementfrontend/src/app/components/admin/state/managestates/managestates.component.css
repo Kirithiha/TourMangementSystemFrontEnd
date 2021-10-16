@@ -6,7 +6,7 @@
 }
 
 #view {
-    margin-top: 40px;
+    margin-top: 20px;
     font-family: 'Lora', serif;
     font-size: medium;
 }
@@ -17,6 +17,8 @@ td, th {
 
 #search {
     margin-top: 10px;
+    margin-left: 270px;
+    width: 400px;
 }
 
 #add {
