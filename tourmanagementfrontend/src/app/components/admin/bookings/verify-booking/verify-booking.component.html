@@ -1,13 +1,22 @@
 <app-dashboard></app-dashboard>
 <div>
     <div class="row">
-        <div class="col-1">
+        <div class="col-4">
+
         </div>
-        <div class="col-11">
+        <div class="col-4">
             <h1 id="app">List of Bookings</h1>
             <div id="search">
                 <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off" placeholder="Search Bookings">
             </div>
+        </div>
+        <div class="col-4">
+
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
             <table id="view" class="table" *ngIf= "bookings!=undefined">
                 <thead>
                 <tr>
@@ -30,16 +39,17 @@
                         <td>{{book.tourPackage.name}}-{{book.tourPackage.city.rtoCode}}</td>
                         <td> 
                             <button mwlConfirmationPopover placement="left" [popoverTitle]="title" [popoverMessage]="messageApprove" (confirm)="approve(book.id)" class="btn btn-info">Approve</button>
-                            <br/><br/>
                             <button mwlConfirmationPopover placement="left" [popoverTitle]="title" [popoverMessage]="messageDelete" (confirm)="deny(book.id)" class="btn btn-danger" style="margin-left: 4px; width: 86px;">Deny</button>
                         </td>
                     </tr>
                 </tbody>
             </table>
+            <div *ngIf= "bookings!=undefined" id="paginations">
+                <pagination-controls (pageChange)="pageChanged($event)">
+                </pagination-controls>
+            </div>
             <h2 id="tableContent" *ngIf="bookings==undefined">
                 No Bookings Avaialable at this moment
-                <pagination-controls style="text-align: center;color:brown;" (pageChange)="pageChanged($event)">
-                </pagination-controls>
             </h2>
         </div>
     </div>

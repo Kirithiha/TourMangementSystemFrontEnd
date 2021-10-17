@@ -1,13 +1,28 @@
 <app-dashboard></app-dashboard>
 <div>
     <div class="row">
-        <div class="col-1">
+        <div class="col-4">
+
         </div>
-        <div class="col-9">
+        <div class="col-4">
             <h1 id="app">List of Packages</h1>
             <div  id="search">
                 <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off" placeholder="Search Package">
             </div>
+        </div>
+        <div class="col-2">
+
+        </div>
+        <div class="col-2" id="add">
+            <button type="button" (click)="addPackage()" id="add" class="btn btn-info btn-lg">Add Package</button>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-1">
+
+        </div>
+        <div class="col-10">
             <table id="view" class="table" *ngIf= "packages!=undefined && length!=0">
                 <thead>
                 <tr>
@@ -40,14 +55,16 @@
                     </tr>
                 </tbody>
             </table>
-            <pagination-controls style="text-align: center;color:brown;" (pageChange)="pageChanged($event)">
-            </pagination-controls>
+            <div *ngIf= "packages!=undefined && length!=0" id="paginations">
+                <pagination-controls (pageChange)="pageChanged($event)">
+                </pagination-controls>
+            </div>
             <h2 id="tableContent" *ngIf="packages==undefined || length == 0">
-                No Places Avaialable at this moment
+                No Packages Avaialable at this moment
             </h2>
         </div>
-        <div class="col-2" id="add">
-            <button type="button" (click)="addPackage()" id="add" class="btn btn-info btn-lg">Add Package</button>
+        <div class="col-1">
+
         </div>
     </div>
 </div>

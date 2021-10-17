@@ -35,7 +35,7 @@ export class ManagePlaceComponent implements OnInit {
     (error) => {
       this.jsonObject = JSON.parse(JSON.stringify(error));
       var message = this.jsonObject.error.message;
-      window.alert(message);
+      this.tostr.error(message);
     });
   }
 

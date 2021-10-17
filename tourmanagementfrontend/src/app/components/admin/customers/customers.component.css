@@ -17,11 +17,8 @@ td, th {
 
 #search {
     margin-top: 10px;
-    margin-left: 320px;
-    width: 400px;
 }
 
-#add {
-    margin-top: 6px;
-    min-height: 20px;
+#paginations {
+    text-align: center;
 }

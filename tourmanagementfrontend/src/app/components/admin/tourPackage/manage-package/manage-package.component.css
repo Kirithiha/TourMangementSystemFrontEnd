@@ -17,8 +17,6 @@ td, th {
 
 #search {
     margin-top: 10px;
-    margin-left: 270px;
-    width: 400px;
 }
 
 #add {
@@ -29,4 +27,8 @@ td, th {
 #image {
     width: 200px;
     height: 180px;
+}
+
+#paginations {
+    text-align: center;
 }

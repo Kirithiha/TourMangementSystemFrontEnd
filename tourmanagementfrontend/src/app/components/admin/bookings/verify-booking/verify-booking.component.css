@@ -1,13 +1,12 @@
 #app {
     margin-top: 10px;
-    margin-left: 300px;
     font-family: 'Lora', serif;
     font-size: 40px;
+    text-align: center;
 }
 
 #view {
     margin-top: 20px;
-    margin-left: -80px;
     font-family: 'Lora', serif;
     font-size: medium;
 }
@@ -17,12 +16,15 @@ td, th {
 }
 
 #search {
-    margin-left: 270px;
-    width: 400px;
     margin-top: 10px;
 }
 
 #add {
     margin-top: 6px;
     min-height: 20px;
+}
+
+
+#paginations {
+    text-align: center;
 }

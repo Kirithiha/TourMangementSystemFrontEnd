@@ -1,14 +1,28 @@
 <app-dashboard></app-dashboard>
 <div>
     <div class="row">
-        <div class="col-1" >
-           
+        <div class="col-4">
+
         </div>
-        <div class="col-9">
+        <div class="col-4">
             <h1 id="app">List of States</h1>
             <div id="search">
                 <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off" placeholder="Search State">
             </div>
+        </div>
+        <div class="col-2">
+
+        </div>
+        <div class="col-2" id="add">
+            <button type="button" (click)="addState()" id="add" class="btn btn-info btn-lg">Add State</button>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-2">
+
+        </div>
+        <div class="col-8">
             <table id="view" class="table" *ngIf= "states!=undefined">
                 <thead>
                 <tr>
@@ -20,7 +34,7 @@
                 </thead>
                 <tbody>
                 <tr *ngFor="let state of states |filter:searchText |paginate:config; let i = index">
-                    <td>{{i + 1}}</td>
+                    <td style="width: 40px;">{{i + 1}}</td>
                     <td>{{state.code}}</td>
                     <td>{{state.name}}</td>
                     <td>
@@ -30,14 +44,16 @@
                 </tr>
                 </tbody>
             </table>
-            <pagination-controls style="text-align: center;color:brown;" (pageChange)="pageChanged($event)">
-            </pagination-controls>
+            <div *ngIf= "states!=undefined" id="paginations">
+                <pagination-controls (pageChange)="pageChanged($event)">
+                </pagination-controls>
+            </div>
             <h2 id="tableContent" *ngIf="states==undefined">
                 No States Avaialable at this moment
             </h2>
         </div>
-        <div class="col-2" id="add">
-            <button type="button" (click)="addState()" id="add" class="btn btn-info btn-lg">Add State</button>
+        <div class="col-2">
+
         </div>
     </div>
 </div>

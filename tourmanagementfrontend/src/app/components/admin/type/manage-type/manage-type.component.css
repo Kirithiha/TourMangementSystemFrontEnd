@@ -7,7 +7,6 @@
 
 #view {
     margin-top: 20px;
-    margin-left: 180px;
     font-family: 'Lora', serif;
     font-size: medium;
 }
@@ -17,12 +16,14 @@ td, th {
 }
 
 #search {
-    margin-left: 270px;
     margin-top: 20px;
-    width: 400px;
 }
 
 #add {
     margin-top: 6px;
     min-height: 20px;
+}
+
+#paginations {
+    text-align: center;
 }

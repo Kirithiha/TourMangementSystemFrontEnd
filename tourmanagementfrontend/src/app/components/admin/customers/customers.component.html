@@ -1,13 +1,25 @@
 <app-dashboard></app-dashboard>
 <div>
     <div class="row">
-        <div class="col-1">
+        <div class="col-4">
+
         </div>
-        <div class="col-10">
+        <div class="col-4">
             <h1 id="app">List of Customers</h1>
             <div id="search">
                 <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off" placeholder="Search Bookings">
             </div>
+        </div>
+        <div class="col-4">
+
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-1">
+
+        </div>
+        <div class="col-10">
             <table id="view" class="table" *ngIf= "customers!=undefined">
                 <thead>
                 <tr>
@@ -26,14 +38,16 @@
                     </tr>
                 </tbody>
             </table>
+            <div *ngIf= "customers!=undefined" id="paginations">
+                <pagination-controls (pageChange)="pageChanged($event)">
+                </pagination-controls>
+            </div>
             <h2 id="tableContent" *ngIf="customers==undefined">
                 No Customers Avaialable at this moment
-                <pagination-controls style="text-align: center;color:brown;" (pageChange)="pageChanged($event)">
-                </pagination-controls>
             </h2>
         </div>
         <div class="col-1">
-          
+
         </div>
     </div>
 </div>
